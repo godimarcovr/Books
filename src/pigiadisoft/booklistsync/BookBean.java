@@ -1,21 +1,30 @@
 package pigiadisoft.booklistsync;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-public class BookBean {
+import pigiadisoft.dbhandler.DataBean;
+
+public class BookBean implements DataBean {
 
 	String titolo,isbn_13;
-	String[] autori;
+	Set<String> autori;
 
 	public BookBean() {
 		this.titolo = "";
-		this.autori = new String[0];
+		this.autori = new HashSet<String>();
 		this.isbn_13 = "";
 	}
 
-	public BookBean(String titolo, String[] autori, String isbn_13) {
+	public BookBean(String titolo, List<String> autori, String isbn_13) {
 		this.titolo = titolo;
-		this.autori = autori.clone();
+		this.autori = new HashSet<String>();
+		this.autori.addAll(autori);
 		this.isbn_13 = isbn_13;
 	}
 
@@ -29,12 +38,16 @@ public class BookBean {
 
 	
 
-	public String[] getAutori() {
+	public Set<String> getAutori() {
 		return autori;
 	}
 
-	public void setAutori(String[] autori) {
-		this.autori = autori;
+	public void addAutore(String autore){
+		this.autori.add(autore);
+	}
+	
+	public void addAutori(Collection<String> autori){
+		this.autori.addAll(autori);
 	}
 
 	public String getIsbn_13() {
@@ -74,7 +87,7 @@ public class BookBean {
 	@Override
 	public String toString() {
 		return "BookBean [titolo=" + titolo + ", isbn_13=" + isbn_13
-				+ ", autori=" + Arrays.toString(autori) + "]";
+				+ ", autori=" + autori + "]";
 	}
 	
 	

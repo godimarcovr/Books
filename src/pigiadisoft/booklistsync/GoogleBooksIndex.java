@@ -55,7 +55,7 @@ public class GoogleBooksIndex extends ExternalBookIndex {
 				BookBean toAdd = new BookBean();
 				Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
 				toAdd.setTitolo(volumeInfo.getTitle());
-				toAdd.setAutori(volumeInfo.getAuthors().toArray(new String[0]));
+				toAdd.addAutori((volumeInfo.getAuthors()));
 				for (IndustryIdentifiers ii : volumeInfo.getIndustryIdentifiers()) {
 					if(ii.getType().equals("ISBN_10") || ii.getType().equals("ISBN_13")){
 						//autoconversione in caso sia isbn10

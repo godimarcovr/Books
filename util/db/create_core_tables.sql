@@ -17,7 +17,8 @@ CREATE TABLE Autore (
 
 CREATE TABLE ScrittoDa (
 	libro_isbn VARCHAR(13) REFERENCES Libro(isbn),
-	autore_nome VARCHAR(30) REFERENCES Autore(nome)
+	autore_nome VARCHAR(30) REFERENCES Autore(nome),
+	PRIMARY KEY(libro_isbn,autore_nome)
 );
 
 CREATE TABLE LibroPosseduto (
