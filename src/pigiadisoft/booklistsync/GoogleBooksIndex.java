@@ -17,14 +17,20 @@ import com.google.api.services.books.model.Volumes;
 
 public class GoogleBooksIndex extends ExternalBookIndex {
 
-	private final String apikey;
-	private final JsonFactory jsonFactory;
-	private final String APPLICATION_NAME;
+	private static String apikey=null;
+	private static JsonFactory jsonFactory=null;
+	private static String APPLICATION_NAME=null;
 
 	public GoogleBooksIndex() {
-		this.jsonFactory = JacksonFactory.getDefaultInstance();
-		this.APPLICATION_NAME = "PigiadiBooks";
-		this.apikey = "AIzaSyAaEUJM1fVB91_nhO2lWrzma0DcxeJ1Bj0";
+		if(jsonFactory==null){
+			jsonFactory = JacksonFactory.getDefaultInstance();
+		}
+		if(APPLICATION_NAME==null){
+			APPLICATION_NAME = "PigiadiBooks";
+		}
+		if(apikey==null){
+			apikey = "AIzaSyAaEUJM1fVB91_nhO2lWrzma0DcxeJ1Bj0";
+		}
 	}
 
 	@Override
@@ -36,7 +42,7 @@ public class GoogleBooksIndex extends ExternalBookIndex {
 					null)
 					.setApplicationName(APPLICATION_NAME)
 					.setGoogleClientRequestInitializer(
-							new BooksRequestInitializer(this.apikey)).build();
+							new BooksRequestInitializer(apikey)).build();
 
 			com.google.api.services.books.Books.Volumes.List volumesList = books
 					.volumes().list("intitle:" + title);
