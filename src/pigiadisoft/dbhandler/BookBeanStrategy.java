@@ -22,8 +22,8 @@ public class BookBeanStrategy extends DataBeanStrategy {
 	}
 
 	public BookBeanStrategy() {
-		super(QueryBuilder
-				.createSelectAllOrderBy("ScrittoDa AS SD JOIN Libro L ON SD.libro_isbn=L.isbn "
+		super(SQLCodeBuilder
+				.createSelectAllFromOrderBy("ScrittoDa AS SD JOIN Libro L ON SD.libro_isbn=L.isbn "
 				+ "JOIN Autore A ON A.nome=SD.autore_nome ","L.isbn"));
 		this.ref_titolo="titolo";
 		this.ref_isbn="isbn";

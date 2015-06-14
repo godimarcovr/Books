@@ -1,4 +1,5 @@
 --da fare politiche di cascade
+--aggiungere vincoli ad esempio isbn solo numerici
 
 CREATE TABLE Users (
 	username VARCHAR(20) PRIMARY KEY,
