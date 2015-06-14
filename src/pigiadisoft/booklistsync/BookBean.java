@@ -89,6 +89,43 @@ public class BookBean implements DataBean {
 		return "BookBean [titolo=" + titolo + ", isbn_13=" + isbn_13
 				+ ", autori=" + autori + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((autori == null) ? 0 : autori.hashCode());
+		result = prime * result + ((isbn_13 == null) ? 0 : isbn_13.hashCode());
+		result = prime * result + ((titolo == null) ? 0 : titolo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookBean other = (BookBean) obj;
+		if (autori == null) {
+			if (other.autori != null)
+				return false;
+		} else if (!autori.equals(other.autori))
+			return false;
+		if (isbn_13 == null) {
+			if (other.isbn_13 != null)
+				return false;
+		} else if (!isbn_13.equals(other.isbn_13))
+			return false;
+		if (titolo == null) {
+			if (other.titolo != null)
+				return false;
+		} else if (!titolo.equals(other.titolo))
+			return false;
+		return true;
+	}
 	
 	
 	

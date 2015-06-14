@@ -14,11 +14,15 @@ import pigiadisoft.booklistsync.BookBean;
 public class BookBeanStrategy extends DataBeanStrategy {
 	private String ref_titolo,ref_isbn, ref_autore;
 	
-	private BookBeanStrategy(Query selectLibri, String ref_titolo, String ref_isbn,	String ref_autore){
+	public BookBeanStrategy(Query selectLibri, String ref_titolo, String ref_isbn,	String ref_autore){
 		super(selectLibri);
 		this.ref_titolo = ref_titolo;
 		this.ref_isbn = ref_isbn;
 		this.ref_autore = ref_autore;
+	}
+	
+	public BookBeanStrategy(Query selectLibri){
+		this(selectLibri,"titolo","isbn","nome");
 	}
 
 	public BookBeanStrategy() {

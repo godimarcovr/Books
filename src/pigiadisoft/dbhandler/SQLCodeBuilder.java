@@ -21,6 +21,15 @@ public class SQLCodeBuilder {
 		return toRet;
 	}
 	
+	public static SQLCode createSelectAllFromWhereWithParams(String from, String where, Object[] params){
+		Query toRet=new Query("SELECT * FROM "+from
+				+" WHERE "+where+" ;");
+		for (Object object : params) {
+			toRet.addParam(object);
+		}
+		return toRet;
+	}
+	
 	public static SQLCode createInsertInto(String into, String[] columns, Object[][] values){
 		//se non ho righei da inserire o colonne e valori per riga da inserire non corrispondono
 		//ritorno null
