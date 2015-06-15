@@ -28,7 +28,10 @@ CREATE TABLE ScrittoDa (
 
 CREATE TABLE LibroPosseduto (
 	libro_industryid VARCHAR(13) REFERENCES Libro(industryid),
-	user_username VARCHAR(20) REFERENCES Users(username)
+	user_username VARCHAR(20) REFERENCES Users(username),
+	condizioni INTEGER CHECK(condizioni>=1 AND condizioni<=5),
+	voto INTEGER CHECK(voto>=1 AND voto<=10),
+	recensione TEXT
 );
 
 CREATE TABLE PosGeograficaFake (
