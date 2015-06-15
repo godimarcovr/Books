@@ -1,4 +1,4 @@
-package views;
+package pigiadibooks.pages;
 
 public class MainView {
 
