@@ -12,14 +12,14 @@ import java.util.Map;
 import java.util.Set;
 
 import pigiadibooks.dbhandler.DMLCode;
-import pigiadibooks.dbhandler.DataBeanStrategy;
+import pigiadibooks.dbhandler.DataBeanGetStrategy;
 import pigiadibooks.dbhandler.Query;
 import pigiadibooks.dbhandler.SQLCode;
 import pigiadibooks.dbhandler.SQLCodeBuilder;
 import pigiadibooks.model.BookModel;
 import pigiadibooks.model.DataModel;
 
-public class BookBeanStrategy extends DataBeanStrategy {
+public class BookBeanStrategy extends DataBeanGetStrategy {
 	private String ref_titolo,ref_industryid, ref_autore,ref_desc,ref_url;
 	
 	private DMLCode insertBook;

@@ -9,11 +9,11 @@ import java.util.List;
 
 import pigiadibooks.model.DataModel;
 
-public abstract class DataBeanStrategy {
+public abstract class DataBeanGetStrategy {
 	
-	private SQLCode code;
+	private Query code;
 	
-	public DataBeanStrategy(SQLCode select){
+	public DataBeanGetStrategy(Query select){
 		this.code=select;
 	}
 	

@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.junit.Test;
 
-import pigiadibooks.booklistsync.BookLookup;
 import pigiadibooks.model.BookModel;
+import pigiadibooks.pagesutil.BookLookup;
 
 public class BookLookupTest {
 

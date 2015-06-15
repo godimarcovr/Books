@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 import pigiadibooks.booklistsync.BookBeanStrategy;
-import pigiadibooks.dbhandler.DataBeanStrategy;
+import pigiadibooks.dbhandler.DataBeanGetStrategy;
 import pigiadibooks.dbhandler.MyDriver;
 import pigiadibooks.dbhandler.Query;
 import pigiadibooks.dbhandler.SQLCode;

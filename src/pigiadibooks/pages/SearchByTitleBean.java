@@ -9,8 +9,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import pigiadibooks.booklistsync.BookLookup;
 import pigiadibooks.model.BookModel;
+import pigiadibooks.pagesutil.BookLookup;
 
 @ManagedBean(name = "sbt")
 @SessionScoped

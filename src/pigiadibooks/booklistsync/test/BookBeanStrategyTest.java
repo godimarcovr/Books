@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 import pigiadibooks.booklistsync.BookBeanStrategy;
-import pigiadibooks.dbhandler.DataBeanStrategy;
+import pigiadibooks.dbhandler.DataBeanGetStrategy;
 import pigiadibooks.dbhandler.MyDriver;
 import pigiadibooks.dbhandler.SQLCode;
 import pigiadibooks.dbhandler.SQLCodeBuilder;
@@ -20,7 +20,7 @@ public class BookBeanStrategyTest {
 
 	@Test
 	public void testDataBeanStrategy() {
-		DataBeanStrategy dbs=new BookBeanStrategy();
+		DataBeanGetStrategy dbs=new BookBeanStrategy();
 		assertNotNull(dbs);
 	}
 
@@ -67,7 +67,7 @@ public class BookBeanStrategyTest {
 			e.printStackTrace();
 		}
 		
-		DataBeanStrategy dbs=new BookBeanStrategy();
+		DataBeanGetStrategy dbs=new BookBeanStrategy();
 		try {
 			Connection c=MyDriver.getInstance().getConnection();
 			List<DataModel> ldb=dbs.getSelectedBeans(c);

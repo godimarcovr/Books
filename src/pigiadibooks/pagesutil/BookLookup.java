@@ -1,4 +1,4 @@
-package pigiadibooks.booklistsync;
+package pigiadibooks.pagesutil;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.sql.Connection;
@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import pigiadibooks.booklistsync.BookBeanStrategy;
+import pigiadibooks.booklistsync.ExternalBookIndex;
+import pigiadibooks.booklistsync.GoogleBooksIndex;
 import pigiadibooks.dbhandler.DMLCode;
 import pigiadibooks.dbhandler.MyDriver;
 import pigiadibooks.dbhandler.Query;
