@@ -3,7 +3,6 @@ package pigiadibooks.booklistsync;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import pigiadibooks.model.BookModel;

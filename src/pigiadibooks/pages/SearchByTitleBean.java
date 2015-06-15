@@ -12,7 +12,7 @@ import javax.faces.bean.SessionScoped;
 import pigiadibooks.model.BookModel;
 import pigiadibooks.pagesutil.BookLookup;
 
-@ManagedBean(name = "sbt")
+@ManagedBean(name = "searchResults")
 @SessionScoped
 public class SearchByTitleBean {
 	
@@ -21,22 +21,23 @@ public class SearchByTitleBean {
 	private String lastTitleSearched;
 	
 	public SearchByTitleBean(){
-		this.cache=new ArrayList<BookModel>();
+		this.setCache(new ArrayList<BookModel>());
 		this.lastTitleSearched="";
 	}
 	
 	public void setTitle(String title){
 		this.lookup=new BookLookup(title);
+		getResults();
 	}
 	
-	public List<BookModel> getResults(){
+	private List<BookModel> getResults(){
 		List<BookModel> result=null;
 		
 		try {
 			if(!this.lastTitleSearched.equals(this.lookup.getTitle())){
 				result=this.lookup.lookupByTitle();
 				this.lastTitleSearched=this.lookup.getTitle();
-				this.cache=result;
+				this.setCache(result);
 			}			
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException | SQLException
@@ -47,5 +48,13 @@ public class SearchByTitleBean {
 			result=new ArrayList<BookModel>();
 		}
 		return result; 
+	}
+
+	public List<BookModel> getCache() {
+		return cache;
+	}
+
+	public void setCache(List<BookModel> cache) {
+		this.cache = cache;
 	}
 }

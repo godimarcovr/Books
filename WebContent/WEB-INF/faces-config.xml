@@ -12,5 +12,16 @@
 			<base-name>messages</base-name>
 			<var>msgs</var>
 		</resource-bundle>
+		
 	</application>
+	<managed-bean>
+		<managed-bean-name>MainView</managed-bean-name>
+		<managed-bean-class>pigiadibooks.pages.MainView</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>searchResults</property-name>
+			<property-class>pigiadibooks.pages.SearchByTitleBean</property-class>
+			<value>#{searchResults}</value>
+		</managed-property>
+	</managed-bean>
 </faces-config>
