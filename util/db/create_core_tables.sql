@@ -1,15 +1,19 @@
 --da fare politiche di cascade
---aggiungere vincoli ad esempio isbn solo numerici
+--aggiungere vincoli ad esempio industryid solo numerici
 
 CREATE TABLE Users (
 	username VARCHAR(20) PRIMARY KEY,
 	password VARCHAR(50) NOT NULL,
-	email VARCHAR(30) NOT NULL
+	email VARCHAR(30) NOT NULL,
+	nome VARCHAR(20),
+	cognome VARCHAR(20)
 );
 
 CREATE TABLE Libro (
-	isbn VARCHAR(13) CHECK(char_length(isbn)>12) PRIMARY KEY,
-	titolo VARCHAR(50)
+	industryid VARCHAR(30) PRIMARY KEY,
+	titolo TEXT NOT NULL,
+	descrizione TEXT,
+	imgurl TEXT
 );
 
 CREATE TABLE Autore (
@@ -17,13 +21,13 @@ CREATE TABLE Autore (
 );
 
 CREATE TABLE ScrittoDa (
-	libro_isbn VARCHAR(13) REFERENCES Libro(isbn),
+	libro_industryid TEXT REFERENCES Libro(industryid),
 	autore_nome VARCHAR(30) REFERENCES Autore(nome),
-	PRIMARY KEY(libro_isbn,autore_nome)
+	PRIMARY KEY(libro_industryid,autore_nome)
 );
 
 CREATE TABLE LibroPosseduto (
-	libro_isbn VARCHAR(13) REFERENCES Libro(isbn),
+	libro_industryid VARCHAR(13) REFERENCES Libro(industryid),
 	user_username VARCHAR(20) REFERENCES Users(username)
 );
 

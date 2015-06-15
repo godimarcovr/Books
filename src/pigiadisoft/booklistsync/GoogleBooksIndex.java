@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import pigiadisoft.model.BookModel;
+
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.books.Books;
 import com.google.api.services.books.BooksRequestInitializer;
 import com.google.api.services.books.model.Volume;
+import com.google.api.services.books.model.Volume.VolumeInfo.ImageLinks;
 import com.google.api.services.books.model.Volume.VolumeInfo.IndustryIdentifiers;
 import com.google.api.services.books.model.Volumes;
 
@@ -34,7 +37,7 @@ public class GoogleBooksIndex extends ExternalBookIndex {
 	}
 
 	@Override
-	public List<BookBean> getBooksByTitle(String title)
+	public List<BookModel> getBooksByTitle(String title)
 			throws GeneralSecurityException, IOException {
 		Books books = null;
 
@@ -46,27 +49,72 @@ public class GoogleBooksIndex extends ExternalBookIndex {
 
 		com.google.api.services.books.Books.Volumes.List volumesList = books
 				.volumes().list("intitle:" + title);
+		// volumesList.set("langRestrict", "it");
 		Volumes volumes = volumesList.execute();
 		if (volumes.getTotalItems() == 0 || volumes.getItems() == null) {
-			return new ArrayList<BookBean>();
+			return new ArrayList<BookModel>();
 		}
-		List<BookBean> toRet = new ArrayList<BookBean>();
+		List<BookModel> toRet = new ArrayList<BookModel>();
 		for (Volume volume : volumes.getItems()) {
-			BookBean toAdd = new BookBean();
+			BookModel toAdd = new BookModel();
 			Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
 			toAdd.setTitolo(volumeInfo.getTitle());
-			toAdd.addAutori((volumeInfo.getAuthors()));
-			for (IndustryIdentifiers ii : volumeInfo.getIndustryIdentifiers()) {
-				if (ii.getType().equals("ISBN_10")
-						|| ii.getType().equals("ISBN_13")) {
-					// autoconversione in caso sia isbn10
-					toAdd.setIsbn_13(ii.getIdentifier());
-					break;
+			toAdd.addAutori((volumeInfo.getAuthors()) != null ? (volumeInfo
+					.getAuthors()) : new ArrayList<String>());
+			boolean foundIndID = false;
+			if (volumeInfo.getIndustryIdentifiers() != null) {
+				
+				for (IndustryIdentifiers ii : volumeInfo
+						.getIndustryIdentifiers()) {
+					if (ii.getType().equals("ISBN_10")
+							|| ii.getType().equals("ISBN_13")) {
+						// autoconversione in caso sia isbn10
+						toAdd.setindustryID(ii.getIdentifier());
+						foundIndID = true;
+						break;
+					}
+				}
+				if (!foundIndID) {
+					for (IndustryIdentifiers ii : volumeInfo.getIndustryIdentifiers()) {
+						if (ii.getType().equals("ISSN")){
+							toAdd.setindustryID(ii.getIdentifier());
+							foundIndID=true;
+							break;
+						}
+						
+					}
+				}
+				if (!foundIndID) {
+					for (IndustryIdentifiers ii : volumeInfo.getIndustryIdentifiers()) {
+						toAdd.setindustryID(ii.getIdentifier());
+						foundIndID=true;
+						break;
+					}
 				}
 			}
-			toRet.add(toAdd);
+			toAdd.setDescrizione(volumeInfo.getDescription());
+			toAdd.setImgurl(volumeInfo.getImageLinks()!=null
+					?this.getBiggestImageURL(volumeInfo.getImageLinks())
+					:"");
+			if(foundIndID)toRet.add(toAdd);
 		}
 		return toRet;
+	}
+
+	private String getBiggestImageURL(ImageLinks il) {
+		if (il.getLarge() != null)
+			return il.getLarge();
+		if (il.getMedium() != null)
+			return il.getMedium();
+		if (il.getSmall() != null)
+			return il.getSmall();
+		if (il.getThumbnail() != null)
+			return il.getThumbnail();
+		if (il.getSmallThumbnail() != null)
+			return il.getSmallThumbnail();
+		if (il.getExtraLarge() != null)
+			return il.getExtraLarge();
+		return null;
 	}
 
 }

@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import pigiadisoft.booklistsync.BookBean;
 import pigiadisoft.booklistsync.ExternalBookIndex;
 import pigiadisoft.booklistsync.GoogleBooksIndex;
+import pigiadisoft.model.BookModel;
 
 public class GoogleBooksIndexTest {
 
@@ -16,9 +16,9 @@ public class GoogleBooksIndexTest {
 	public void testGetBooksByTitle() {
 		ExternalBookIndex ind=new GoogleBooksIndex();
 		try {
-			List<BookBean> bblist=ind.getBooksByTitle("follia sette clan");
+			List<BookModel> bblist=ind.getBooksByTitle("follia sette clan");
 			assertFalse(bblist.isEmpty());
-			for (BookBean bookBean : bblist) {
+			for (BookModel bookBean : bblist) {
 				System.out.println(bookBean);
 			}
 		} catch (Exception e) {

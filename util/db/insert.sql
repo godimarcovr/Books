@@ -14,3 +14,7 @@ VALUES  ('1234567891011', 'alighieri'),
 		('1234567891010', 'alighieri'),
 		('1234567891010', 'asimov'),
 		('1234567891012', 'alighieri');
+		
+INSERT INTO Users
+VALUES  ('marco_godi','qazaqa','godimarcovr@gmail.com','Marco','Godi'),
+		('enrico_sartori','apensa1212','enrypif@gmail.com','Enrico','Sartori');

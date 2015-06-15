@@ -1,4 +1,4 @@
-package pigiadisoft.booklistsync;
+package pigiadisoft.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,24 +8,42 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import pigiadisoft.dbhandler.DataBean;
+public class BookModel implements DataModel {
 
-public class BookBean implements DataBean {
-
-	String titolo,isbn_13;
+	String titolo,industryID,descrizione,imgurl;
 	Set<String> autori;
 
-	public BookBean() {
+	public BookModel() {
 		this.titolo = "";
 		this.autori = new HashSet<String>();
-		this.isbn_13 = "";
+		this.industryID = "";
+		this.descrizione="";
+		this.imgurl="";
+	}
+	
+	public BookModel(String titolo, String industryID, String descrizione,	String imgurl) {
+		super();
+		this.titolo = titolo;
+		this.industryID = industryID;
+		this.descrizione = descrizione;
+		this.imgurl = imgurl;
+		this.autori = new HashSet<String>();
 	}
 
-	public BookBean(String titolo, List<String> autori, String isbn_13) {
-		this.titolo = titolo;
-		this.autori = new HashSet<String>();
-		this.autori.addAll(autori);
-		this.isbn_13 = isbn_13;
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+
+	public String getImgurl() {
+		return imgurl;
+	}
+
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
 	}
 
 	public String getTitolo() {
@@ -50,21 +68,21 @@ public class BookBean implements DataBean {
 		this.autori.addAll(autori);
 	}
 
-	public String getIsbn_13() {
-		return isbn_13;
+	public String getindustryID() {
+		return industryID;
 	}
 
-	public void setIsbn_13(String isbn_13) {
+	public void setindustryID(String industryID) {
 		//conversione automatica da formato isbn10 a formato isbn13
-		if(isbn_13.length()==10){
-			this.isbn_13 = ISBN10toISBN13(isbn_13);
+		if(industryID.length()==10){
+			this.industryID = ISBN10toISBN13(industryID);
 		}
 		else{
-			this.isbn_13=isbn_13;
+			this.industryID=industryID;
 		}
 		
 	}
-	
+
 	private static String ISBN10toISBN13(String ISBN10) {
 		String ISBN13 = ISBN10;
 		ISBN13 = "978" + ISBN13.substring(0, 9);
@@ -86,7 +104,8 @@ public class BookBean implements DataBean {
 
 	@Override
 	public String toString() {
-		return "BookBean [titolo=" + titolo + ", isbn_13=" + isbn_13
+		return "BookModel [titolo=" + titolo + ", industryID=" + industryID
+				+ ", descrizione=" + descrizione + ", imgurl=" + imgurl
 				+ ", autori=" + autori + "]";
 	}
 
@@ -95,7 +114,10 @@ public class BookBean implements DataBean {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((autori == null) ? 0 : autori.hashCode());
-		result = prime * result + ((isbn_13 == null) ? 0 : isbn_13.hashCode());
+		result = prime * result
+				+ ((descrizione == null) ? 0 : descrizione.hashCode());
+		result = prime * result + ((imgurl == null) ? 0 : imgurl.hashCode());
+		result = prime * result + ((industryID == null) ? 0 : industryID.hashCode());
 		result = prime * result + ((titolo == null) ? 0 : titolo.hashCode());
 		return result;
 	}
@@ -108,16 +130,26 @@ public class BookBean implements DataBean {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BookBean other = (BookBean) obj;
+		BookModel other = (BookModel) obj;
 		if (autori == null) {
 			if (other.autori != null)
 				return false;
 		} else if (!autori.equals(other.autori))
 			return false;
-		if (isbn_13 == null) {
-			if (other.isbn_13 != null)
+		if (descrizione == null) {
+			if (other.descrizione != null)
 				return false;
-		} else if (!isbn_13.equals(other.isbn_13))
+		} else if (!descrizione.equals(other.descrizione))
+			return false;
+		if (imgurl == null) {
+			if (other.imgurl != null)
+				return false;
+		} else if (!imgurl.equals(other.imgurl))
+			return false;
+		if (industryID == null) {
+			if (other.industryID != null)
+				return false;
+		} else if (!industryID.equals(other.industryID))
 			return false;
 		if (titolo == null) {
 			if (other.titolo != null)
@@ -126,9 +158,4 @@ public class BookBean implements DataBean {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-
 }

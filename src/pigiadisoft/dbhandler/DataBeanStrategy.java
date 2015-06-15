@@ -7,17 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import pigiadisoft.model.DataModel;
+
 public abstract class DataBeanStrategy {
 	
-	private SQLCode select;
+	private SQLCode code;
 	
 	public DataBeanStrategy(SQLCode select){
-		this.select=select;
+		this.code=select;
 	}
 	
-	public List<DataBean> getSelectedBeans(Connection c) throws SQLException{
-		List<DataBean> toRet=new ArrayList<DataBean>();
-		ResultSet rs=this.select.executeQueryOnConnection(c);
+	public List<DataModel> getSelectedBeans(Connection c) throws SQLException{
+		List<DataModel> toRet=new ArrayList<DataModel>();
+		ResultSet rs=this.code.executeQueryOnConnection(c);
 		while(rs.next()){
 			toRet.add(this.buildDataBean(rs));
 		}
@@ -29,8 +31,8 @@ public abstract class DataBeanStrategy {
 	
 	//TODO aggiungere metodo per scrivere bean?
 	
-	protected abstract List<DataBean> lastOpBeforeReturning(List<DataBean> list);
+	protected abstract List<DataModel> lastOpBeforeReturning(List<DataModel> list);
 	
-	protected abstract DataBean buildDataBean(ResultSet rs) throws SQLException;
+	protected abstract DataModel buildDataBean(ResultSet rs) throws SQLException;
 	
 }

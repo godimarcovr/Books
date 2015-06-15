@@ -9,28 +9,28 @@ import java.util.List;
 
 import org.junit.Test;
 
-import pigiadisoft.booklistsync.BookBean;
 import pigiadisoft.booklistsync.BookLookup;
+import pigiadisoft.model.BookModel;
 
 public class BookLookupTest {
 
 	@Test
 	public void test() {
-		BookLookup bl1 = new BookLookup("sole");
+		BookLookup bl1 = new BookLookup("Narnia");
 		try {
-			List<BookBean> res1=bl1.lookupByTitle();
-			BookLookup bl2 = new BookLookup("sole");
-			List<BookBean> res2=bl2.lookupByTitle();
-			assertEquals(res1, res2);
-			for (BookBean bookBean : res2) {
-				System.out.println(bookBean);
-			}
-			System.out.println("********************************************");
-			for (BookBean bookBean : res1) {
-				System.out.println(bookBean);
-			}
+			//List<BookModel> res1=bl1.lookupByTitle();
+			BookLookup bl2 = new BookLookup("cronache narnia");
+			List<BookModel> res2=bl2.lookupByTitle();
+			//assertEquals(res1, res2);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			if(e instanceof SQLException){
+				SQLException ex=(SQLException) e;
+				while(ex instanceof SQLException){
+					System.out.println(ex);
+					ex=ex.getNextException();
+				}
+			}
 			e.printStackTrace();
 		}
 	}
