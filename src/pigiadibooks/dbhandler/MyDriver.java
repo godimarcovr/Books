@@ -1,4 +1,4 @@
-package pigiadisoft.dbhandler;
+package pigiadibooks.dbhandler;
 
 import java.sql.Connection;
 import java.sql.Driver;

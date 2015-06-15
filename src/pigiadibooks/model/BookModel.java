@@ -1,4 +1,4 @@
-package pigiadisoft.model;
+package pigiadibooks.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

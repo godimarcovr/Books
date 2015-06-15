@@ -1,4 +1,4 @@
-package pigiadisoft.booklistsync;
+package pigiadibooks.booklistsync;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import pigiadisoft.model.BookModel;
+import pigiadibooks.model.BookModel;
 
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.JsonFactory;

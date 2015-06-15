@@ -1,4 +1,4 @@
-package pigiadisoft.booklistsync.test;
+package pigiadibooks.booklistsync.test;
 
 import static org.junit.Assert.*;
 
@@ -8,13 +8,13 @@ import java.util.List;
 
 import org.junit.Test;
 
-import pigiadisoft.booklistsync.BookBeanStrategy;
-import pigiadisoft.dbhandler.DataBeanStrategy;
-import pigiadisoft.dbhandler.MyDriver;
-import pigiadisoft.dbhandler.SQLCode;
-import pigiadisoft.dbhandler.SQLCodeBuilder;
-import pigiadisoft.model.BookModel;
-import pigiadisoft.model.DataModel;
+import pigiadibooks.booklistsync.BookBeanStrategy;
+import pigiadibooks.dbhandler.DataBeanStrategy;
+import pigiadibooks.dbhandler.MyDriver;
+import pigiadibooks.dbhandler.SQLCode;
+import pigiadibooks.dbhandler.SQLCodeBuilder;
+import pigiadibooks.model.BookModel;
+import pigiadibooks.model.DataModel;
 
 public class BookBeanStrategyTest {
 

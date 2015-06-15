@@ -1,4 +1,4 @@
-package pigiadisoft.dbhandler;
+package pigiadibooks.dbhandler;
 
 public class SQLCodeBuilder {
 	//creare metodi man mano che servono

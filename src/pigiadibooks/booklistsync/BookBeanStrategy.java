@@ -1,4 +1,4 @@
-package pigiadisoft.booklistsync;
+package pigiadibooks.booklistsync;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import pigiadisoft.dbhandler.DMLCode;
-import pigiadisoft.dbhandler.DataBeanStrategy;
-import pigiadisoft.dbhandler.Query;
-import pigiadisoft.dbhandler.SQLCode;
-import pigiadisoft.dbhandler.SQLCodeBuilder;
-import pigiadisoft.model.BookModel;
-import pigiadisoft.model.DataModel;
+import pigiadibooks.dbhandler.DMLCode;
+import pigiadibooks.dbhandler.DataBeanStrategy;
+import pigiadibooks.dbhandler.Query;
+import pigiadibooks.dbhandler.SQLCode;
+import pigiadibooks.dbhandler.SQLCodeBuilder;
+import pigiadibooks.model.BookModel;
+import pigiadibooks.model.DataModel;
 
 public class BookBeanStrategy extends DataBeanStrategy {
 	private String ref_titolo,ref_industryid, ref_autore,ref_desc,ref_url;

@@ -1,4 +1,4 @@
-package pigiadisoft.booklistsync;
+package pigiadibooks.booklistsync;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.sql.Connection;
@@ -8,14 +8,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import pigiadisoft.dbhandler.MyDriver;
-import pigiadisoft.dbhandler.Query;
-import pigiadisoft.dbhandler.SQLCode;
-import pigiadisoft.dbhandler.SQLCodeBuilder;
-import pigiadisoft.model.BookModel;
-import pigiadisoft.model.DataModel;
+import pigiadibooks.dbhandler.DMLCode;
+import pigiadibooks.dbhandler.MyDriver;
+import pigiadibooks.dbhandler.Query;
+import pigiadibooks.dbhandler.SQLCode;
+import pigiadibooks.dbhandler.SQLCodeBuilder;
+import pigiadibooks.model.BookModel;
+import pigiadibooks.model.DataModel;
 
-
+//TODO ottimizzare parallelizzando inserimenti finali o inserendo alcune chiamate nel costruttore
 public class BookLookup {
 	
 	private BookBeanStrategy strat;
@@ -30,6 +31,10 @@ public class BookLookup {
 		this.title=title;
 	}
 	
+	public String getTitle() {
+		return title;
+	}
+
 	//TODO gestire il controllo in parallelo anche su Google Books oltre che sul db
 	//magari metterlo nel costruttore che fa una thread che va a cercare.
 	public List<BookModel>  lookupByTitle() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, GeneralSecurityException, IOException{
@@ -56,6 +61,7 @@ public class BookLookup {
 			params[i][3]=bm.getImgurl();
 		}
 		SQLCode insertBooks=SQLCodeBuilder.createInsertIntoOnAllColumns("Libro",params);
+		((DMLCode)insertBooks).setIgnoreWarnings(true);
 		
 		Set<String> autori=new HashSet<String>();
 		for (BookModel bm : toIns) {
@@ -68,6 +74,7 @@ public class BookLookup {
 			iAut++;
 		}
 		SQLCode insertAuthors=SQLCodeBuilder.createInsertIntoOnAllColumns("Autore", paramsAutori);
+		((DMLCode)insertAuthors).setIgnoreWarnings(true);
 		
 		
 		List<String> wby_autori=new ArrayList<String>();
@@ -84,6 +91,7 @@ public class BookLookup {
 			paramsWBy[i][1]=wby_autori.get(i);
 		}
 		SQLCode insertWrittenBy=SQLCodeBuilder.createInsertIntoOnAllColumns("ScrittoDa", paramsWBy);
+		((DMLCode)insertWrittenBy).setIgnoreWarnings(true);
 		
 		insertBooks.executeQueryOnConnection(c);
 		insertAuthors.executeQueryOnConnection(c);

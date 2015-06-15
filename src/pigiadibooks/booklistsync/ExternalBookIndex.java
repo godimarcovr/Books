@@ -1,10 +1,10 @@
-package pigiadisoft.booklistsync;
+package pigiadibooks.booklistsync;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 
-import pigiadisoft.model.BookModel;
+import pigiadibooks.model.BookModel;
 
 public abstract class ExternalBookIndex {
 	

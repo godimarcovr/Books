@@ -1,4 +1,4 @@
-package pigiadisoft.dbhandler;
+package pigiadibooks.dbhandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import pigiadisoft.model.DataModel;
+import pigiadibooks.model.DataModel;
 
 public abstract class DataBeanStrategy {
 	

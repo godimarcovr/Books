@@ -1,4 +1,4 @@
-package pigiadisoft.booklistsync.test;
+package pigiadibooks.booklistsync.test;
 
 import static org.junit.Assert.*;
 
@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.junit.Test;
 
-import pigiadisoft.booklistsync.BookLookup;
-import pigiadisoft.model.BookModel;
+import pigiadibooks.booklistsync.BookLookup;
+import pigiadibooks.model.BookModel;
 
 public class BookLookupTest {
 

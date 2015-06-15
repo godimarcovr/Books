@@ -1,4 +1,4 @@
-package pigiadisoft.booklistsync.test;
+package pigiadibooks.booklistsync.test;
 
 import static org.junit.Assert.*;
 
@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import pigiadisoft.booklistsync.ExternalBookIndex;
-import pigiadisoft.booklistsync.GoogleBooksIndex;
-import pigiadisoft.model.BookModel;
+import pigiadibooks.booklistsync.ExternalBookIndex;
+import pigiadibooks.booklistsync.GoogleBooksIndex;
+import pigiadibooks.model.BookModel;
 
 public class GoogleBooksIndexTest {
 

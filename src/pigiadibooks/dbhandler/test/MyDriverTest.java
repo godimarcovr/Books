@@ -1,4 +1,4 @@
-package pigiadisoft.dbhandler.test;
+package pigiadibooks.dbhandler.test;
 
 import static org.junit.Assert.*;
 
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
-import pigiadisoft.dbhandler.MyDriver;
+import pigiadibooks.dbhandler.MyDriver;
 
 public class MyDriverTest {
 

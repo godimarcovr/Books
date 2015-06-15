@@ -1,4 +1,4 @@
-package pigiadisoft.model;
+package pigiadibooks.model;
 
 public interface DataModel {
 
