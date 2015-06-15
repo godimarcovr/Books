@@ -11,44 +11,11 @@
 <body>
 	<ui:composition template="/templates/layout.jsf">
 		<ui:define name="windowTitle">
-    #{msgs.AgencyHome}
-  </ui:define>
+    		#{msgs.AgencyHome}
+  		</ui:define>
 
 		<ui:define name="content">
-			<div id='TypeMenu'>
-				<h:form>
-					<f:event listener="#{View.aggiornaListaVendita}"
-						type="preRenderView" />
-
-					<h:commandLink action="#{View.TipoScelto(1)}">
-						<div class="boxA mpTypeButton">
-							<div class="mpTypeButtonText">
-								<h:outputText value="#{msgs.palazzina} #{View.nApp}" />
-							</div>
-						</div>
-					</h:commandLink>
-					<h:commandLink action="#{View.TipoScelto(2)}">
-						<div class="boxB mpTypeButton">
-							<div class="mpTypeButtonText">
-								<h:outputText value="#{msgs.vill_schiera} #{View.nSch}" />
-							</div>
-
-						</div>
-					</h:commandLink>
-					<h:commandLink action="#{View.TipoScelto(3)}">
-						<div class="boxC mpTypeButton">
-							<div class="mpTypeButtonText">
-								<h:outputText value="#{msgs.vill_singola} #{View.nSin}" />
-							</div>
-						</div>
-					</h:commandLink>
-				</h:form>
-			</div>
-			<div class="clear" />
-			<br />
-			<br />
-			<br />
-			<h:outputText value="#{msgs.AgencyPresentation}" escape="false" />
+			
 		</ui:define>
 	</ui:composition>
 </body>
