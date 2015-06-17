@@ -2,9 +2,9 @@
 --aggiungere vincoli ad esempio industryid solo numerici
 
 CREATE TABLE Users (
-	username VARCHAR(20) PRIMARY KEY,
-	password VARCHAR(50) NOT NULL,
-	email VARCHAR(30) NOT NULL,
+	username VARCHAR(30) PRIMARY KEY,
+	password VARCHAR(40) NOT NULL,
+	email VARCHAR(50) NOT NULL UNIQUE,
 	nome VARCHAR(20),
 	cognome VARCHAR(20)
 );
@@ -31,7 +31,8 @@ CREATE TABLE LibroPosseduto (
 	user_username VARCHAR(20) REFERENCES Users(username),
 	condizioni INTEGER CHECK(condizioni>=1 AND condizioni<=5),
 	voto INTEGER CHECK(voto>=1 AND voto<=10),
-	recensione TEXT
+	recensione TEXT,
+	PRIMARY KEY(libro_industryid,user_username)
 );
 
 CREATE TABLE PosGeograficaFake (

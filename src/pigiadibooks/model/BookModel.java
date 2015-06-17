@@ -10,8 +10,8 @@ import java.util.Set;
 
 public class BookModel implements DataModel {
 
-	String titolo,industryID,descrizione,imgurl;
-	Set<String> autori;
+	private String titolo,industryID,descrizione,imgurl;
+	private Set<String> autori;
 
 	public BookModel() {
 		this.titolo = "";

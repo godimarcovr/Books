@@ -22,8 +22,6 @@ import pigiadibooks.model.DataModel;
 public class BookBeanStrategy extends DataBeanGetStrategy {
 	private String ref_titolo,ref_industryid, ref_autore,ref_desc,ref_url;
 	
-	private DMLCode insertBook;
-	
 	public BookBeanStrategy(Query selectLibri, String ref_titolo, String ref_industryid
 			,String ref_autore, String ref_desc, String ref_url){
 		super(selectLibri);

@@ -54,7 +54,7 @@ public class BookLookup {
 		return new ArrayList<BookModel>(toRet);
 	}
 	
-	public void insertBooks(List<BookModel> toIns,Connection c) throws SQLException{
+	private void insertBooks(List<BookModel> toIns,Connection c) throws SQLException{
 		Object[][] params=new Object[toIns.size()][4];
 		for(int i=0;i<toIns.size();i++){
 			BookModel bm=toIns.get(i);

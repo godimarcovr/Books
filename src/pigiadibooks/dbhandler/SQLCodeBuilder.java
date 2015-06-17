@@ -21,9 +21,28 @@ public class SQLCodeBuilder {
 		return toRet;
 	}
 	
+	public static SQLCode createSelectAllFromWhereOrderBy(String from, String where, String orderBy){
+		SQLCode toRet=new Query("SELECT * FROM "+from
+				+" WHERE "+where
+				+" ORDER BY "+orderBy+" ;");
+		return toRet;
+	}
+	
 	public static SQLCode createSelectAllFromWhereWithParams(String from, String where, Object[] params){
 		Query toRet=new Query("SELECT * FROM "+from
 				+" WHERE "+where+" ;");
+		for (Object object : params) {
+			toRet.addParam(object);
+		}
+		return toRet;
+	}
+	
+	public static SQLCode createSelectAllFromWhereOrderByWithParams(String from, String where
+			,String orderBy, Object[] params){
+		Query toRet=new Query("SELECT * FROM "+from
+				+" WHERE "+where
+				+" ORDER BY "+orderBy
+				+" ;");
 		for (Object object : params) {
 			toRet.addParam(object);
 		}
@@ -41,6 +60,7 @@ public class SQLCodeBuilder {
 				for(String column:columns){
 					code.append(column+",");
 				}
+				code.deleteCharAt(code.length()-1);
 				code.append(") ");
 			}
 			else{
@@ -113,6 +133,25 @@ public class SQLCodeBuilder {
 			}
 			
 		}
+	}
+	
+	public static SQLCode createUpdate(String table, String[] columnsToSet
+			, Object[] values,String where){
+		if(columnsToSet.length!=values.length){
+			return null;
+		}
+		StringBuilder code=new StringBuilder("UPDATE "+table);
+		code.append(" SET ");
+		for(int i=0;i<(columnsToSet.length-1);i++){
+			code.append(columnsToSet[i]+"=?,");
+		}
+		code.append(columnsToSet[(columnsToSet.length-1)]+"=? WHERE ");
+		code.append(where+";");
+		DMLCode update=new DMLCode(code.toString(), 1, values.length);
+		for(int i=0;i<values.length;i++){
+			update.setParam(0, i, values[i]);
+		}
+		return update;
 	}
 
 	
