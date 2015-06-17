@@ -49,7 +49,7 @@ public class GoogleBooksIndex extends ExternalBookIndex {
 
 		com.google.api.services.books.Books.Volumes.List volumesList = books
 				.volumes().list("intitle:" + title);
-		// volumesList.set("langRestrict", "it");
+		volumesList.set("langRestrict", "en");
 		Volumes volumes = volumesList.execute();
 		if (volumes.getTotalItems() == 0 || volumes.getItems() == null) {
 			return new ArrayList<BookModel>();
@@ -97,6 +97,13 @@ public class GoogleBooksIndex extends ExternalBookIndex {
 					?this.getBiggestImageURL(volumeInfo.getImageLinks())
 					:"");
 			if(foundIndID)toRet.add(toAdd);
+			
+			if(volumeInfo.getCategories()!=null){
+				toAdd.setCategoria(volumeInfo.getCategories().get(0));
+			}
+			else{
+				toAdd.setCategoria("");
+			}
 		}
 		return toRet;
 	}

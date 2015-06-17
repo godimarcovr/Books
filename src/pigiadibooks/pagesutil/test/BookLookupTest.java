@@ -18,7 +18,7 @@ public class BookLookupTest {
 
 	@Test
 	public void test() {
-		String search="strega";
+		String search="potter";
 		BookLookup bl1 = new BookLookup(search);
 		try {
 			List<BookModel> res1=bl1.lookupByTitle();

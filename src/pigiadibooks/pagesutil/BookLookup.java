@@ -55,13 +55,14 @@ public class BookLookup {
 	}
 	
 	private void insertBooks(List<BookModel> toIns,Connection c) throws SQLException{
-		Object[][] params=new Object[toIns.size()][4];
+		Object[][] params=new Object[toIns.size()][5];
 		for(int i=0;i<toIns.size();i++){
 			BookModel bm=toIns.get(i);
 			params[i][0]=bm.getindustryID();
 			params[i][1]=bm.getTitolo();
 			params[i][2]=bm.getDescrizione();
 			params[i][3]=bm.getImgurl();
+			params[i][4]=bm.getCategoria();
 		}
 		SQLCode insertBooks=SQLCodeBuilder.createInsertIntoOnAllColumns("Libro",params);
 		((DMLCode)insertBooks).setIgnoreWarnings(true);

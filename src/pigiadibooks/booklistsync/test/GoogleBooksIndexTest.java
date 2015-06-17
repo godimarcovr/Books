@@ -16,7 +16,7 @@ public class GoogleBooksIndexTest {
 	public void testGetBooksByTitle() {
 		ExternalBookIndex ind=new GoogleBooksIndex();
 		try {
-			List<BookModel> bblist=ind.getBooksByTitle("follia sette clan");
+			List<BookModel> bblist=ind.getBooksByTitle("sawyer");
 			assertFalse(bblist.isEmpty());
 			for (BookModel bookBean : bblist) {
 				System.out.println(bookBean);

@@ -28,6 +28,15 @@ public class SQLCodeBuilder {
 		return toRet;
 	}
 	
+	public static SQLCode createSelectFromGroupByOrderBy(String columns,String from
+			,String groupBy, String orderBy){
+		SQLCode toRet=new Query("SELECT "+columns
+				+" FROM "+from
+				+" GROUP BY "+groupBy
+				+" ORDER BY "+orderBy+" ;");
+		return toRet;
+	}
+	
 	public static SQLCode createSelectAllFromWhereWithParams(String from, String where, Object[] params){
 		Query toRet=new Query("SELECT * FROM "+from
 				+" WHERE "+where+" ;");

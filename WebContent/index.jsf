@@ -12,10 +12,13 @@
 	<ui:composition template="/templates/layout.jsf">
 		<ui:define name="windowTitle">
     		#{msgs.AgencyHome}
+    		<h:outputText value="#{a.msg}"/>
   		</ui:define>
 
+		<h:outputText value="#{a.msg}"/>
+
 		<ui:define name="content">
-			
+			<h:outputText value="#{a.msg}"/>
 		</ui:define>
 	</ui:composition>
 </body>

@@ -21,19 +21,21 @@ import pigiadibooks.model.DataModel;
 
 public class BookBeanStrategy extends DataBeanGetStrategy {
 	private String ref_titolo,ref_industryid, ref_autore,ref_desc,ref_url;
+	private String ref_categoria;
 	
 	public BookBeanStrategy(Query selectLibri, String ref_titolo, String ref_industryid
-			,String ref_autore, String ref_desc, String ref_url){
+			,String ref_autore, String ref_desc, String ref_url,String ref_categoria){
 		super(selectLibri);
 		this.ref_titolo = ref_titolo;
 		this.ref_industryid = ref_industryid;
 		this.ref_autore = ref_autore;
 		this.ref_desc=ref_desc;
 		this.ref_url=ref_url;
+		this.ref_categoria=ref_categoria;
 	}
 	
 	public BookBeanStrategy(Query selectLibri){
-		this(selectLibri,"titolo","industryid","nome","descrizione","imgurl");
+		this(selectLibri,"titolo","industryid","nome","descrizione","imgurl","categoria");
 	}
 
 	public BookBeanStrategy() {
@@ -52,6 +54,7 @@ public class BookBeanStrategy extends DataBeanGetStrategy {
 		toRet.addAutori(autori);
 		toRet.setDescrizione(rs.getString(this.ref_desc));
 		toRet.setImgurl(rs.getString(this.ref_url));
+		toRet.setCategoria(rs.getString(this.ref_categoria));
 		return toRet;
 	}
 
