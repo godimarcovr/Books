@@ -545,3 +545,77 @@ ul.style4 .first {
 	font-size: medium;
 }
 
+
+
+/******************** BOOK SEARCH RISULTS LIST *********************/
+
+.bookTable {
+	width: 100%;
+}
+
+.bookCell {
+	width: 100%;
+	height: auto;
+	padding: 10px;
+}
+
+.bookCellRow {
+	height: 100px;
+}
+
+.bookCellRow:hover {
+	background-color: #AAA;
+}
+
+.bookCellTitle {
+	float: left;
+	text-align: left;
+}
+
+.bookCellImg {
+	float: left;
+	width: 20%;
+	margin-right: 15px;
+}
+
+.bookThumbnail {
+	width: 128px;
+}
+
+.bookCellAuthors {
+	float: left;
+	width: 75%;
+	text-align: left;
+}
+
+/******************** BOOK DETAILS *********************/
+
+.bookDetails {
+	position: relative;
+}
+
+.bookDetImg {
+	float: left;
+	width: 30%;
+	height: 800px;
+}
+
+.bookImg {
+	width: 100%;
+}
+
+.bookDetTitle {
+	float: left;
+	width: 65%;
+}
+
+.bookDetAuthors {
+	float:left;
+	width: 65%;
+}
+
+.bookDetDesc {
+	float:left;
+	width: 65%;
+}
+

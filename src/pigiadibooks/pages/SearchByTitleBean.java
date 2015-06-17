@@ -6,13 +6,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import pigiadibooks.model.BookModel;
 import pigiadibooks.pagesutil.BookLookup;
 
-@ManagedBean(name = "searchResults")
+@ManagedBean(name = "searchResults", eager=true)
 @SessionScoped
 public class SearchByTitleBean {
 	
@@ -20,7 +22,13 @@ public class SearchByTitleBean {
 	private List<BookModel> cache;
 	private String lastTitleSearched;
 	
-	public SearchByTitleBean(){
+	//@ManagedProperty(value="#{bookDetails}")
+    private BookDetails bookDetails;
+	
+	public SearchByTitleBean(){}
+	
+	@PostConstruct
+	public void init() {
 		this.setCache(new ArrayList<BookModel>());
 		this.lastTitleSearched="";
 	}
@@ -30,7 +38,11 @@ public class SearchByTitleBean {
 		getResults();
 	}
 	
-	private List<BookModel> getResults(){
+	public String getTitle() {
+		return this.lastTitleSearched;
+	}
+	
+	public List<BookModel> getResults(){
 		List<BookModel> result=null;
 		
 		try {
@@ -56,5 +68,27 @@ public class SearchByTitleBean {
 
 	public void setCache(List<BookModel> cache) {
 		this.cache = cache;
+	}
+	/*
+	public BookDetails getBookDetails() {
+		return bookDetails;
+	}
+
+	public void setBookDetails(BookDetails bookDetails) {
+		this.bookDetails = bookDetails;
+	}
+	*/
+
+	public String selectBook(BookModel book) {
+		/*
+		System.out.println(this.bookDetails);
+		if (this.bookDetails != null && book != null) {
+			System.out.println(book.getTitolo());
+			this.bookDetails.setSelectedBook(book);
+			return "bookDetails";
+		}
+		*/
+		return null;
+		
 	}
 }

@@ -2,28 +2,24 @@ package pigiadibooks.pages;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 
-@ManagedBean(name = "mainView")
-@ViewScoped
+@ManagedBean(name = "mainView", eager=true)
+@SessionScoped
 public class MainView {
 	
 	@ManagedProperty(value="#{searchResults}")
     private SearchByTitleBean searchResults;
 	
-	private String searchByTitle;
-	
-	public MainView() {
-		this.searchByTitle = null;
-	}
+	public MainView() {}
 
 	public String getSearchByTitle() {
-		return searchByTitle;
+		return this.searchResults.getTitle();
 	}
 
 	public void setSearchByTitle(String searchByTitle) {
-		this.searchByTitle = searchByTitle;
+		this.searchResults.setTitle(searchByTitle);
 	}
 	
 	public SearchByTitleBean getSearchResults() {
@@ -35,10 +31,8 @@ public class MainView {
 	}
 
 	public String search() {
-		if (this.searchByTitle != null){
-			this.searchResults.setTitle(this.searchByTitle);
+		if (this.searchResults.getTitle() != null)
 			return "searchResults";
-		}
 		return null;
 	}
 }

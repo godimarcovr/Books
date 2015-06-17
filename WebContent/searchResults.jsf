@@ -13,16 +13,30 @@
   		</ui:define>
 
 		<ui:define name="content">
-			<h:form> 
-				<ui:repeat var="R" value="#{searchResults.cache}">
-					<table>
+			<h:form>
+				<table class="bookTable">
+					<ui:repeat id="searchedBooksTable" var="R"
+						value="#{searchResults.cache}">
 						<tr>
-							<td>
-								<div>#{R.titolo}</div>
-							</td>
+							<td class="bookCellRow">
+								<h:commandLink action="#{searchResults.selectBook(R)}" >
+									<div class="bookCellImg">
+										<img class="bookThumbnail" src="#{R.imgurl}" alt="#" />
+									</div>
+									<div class="bookCellTitle">
+										<strong>#{R.titolo}</strong>
+									</div>
+	
+									<div class="bookCellAuthors">
+										<h:outputText value="#{R.autori}" />
+									</div>
+									
+									<div class="clear" />
+								</h:commandLink>
+							</td>						
 						</tr>
-					</table>
-				</ui:repeat>
+					</ui:repeat>
+				</table>
 			</h:form>
 		</ui:define>
 	</ui:composition>
