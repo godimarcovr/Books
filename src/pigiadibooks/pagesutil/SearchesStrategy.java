@@ -23,7 +23,7 @@ public class SearchesStrategy extends DataBeanGetStrategy {
 				.createSelectFromGroupByOrderBy(this.ref_searchkey+",COUNT(*) AS "+this.ref_count
 						, this.ref_searches
 						, this.ref_searchkey
-						, this.ref_count);
+						, this.ref_count+" DESC");
 		
 	}
 	
