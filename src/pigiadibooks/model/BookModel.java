@@ -1,16 +1,17 @@
 package pigiadibooks.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class BookModel implements DataModel {
 
-	String titolo
-		,industryID
-		,descrizione
-		,imgurl;
-	Set<String> autori;
+	private String titolo,industryID,descrizione,imgurl, categoria;
+	private Set<String> autori;
 
 	public BookModel() {
 		this.titolo = "";
@@ -18,15 +19,26 @@ public class BookModel implements DataModel {
 		this.industryID = "";
 		this.descrizione="";
 		this.imgurl="";
+		this.categoria="";
 	}
 	
-	public BookModel(String titolo, String industryID, String descrizione,	String imgurl) {
+	public BookModel(String titolo, String industryID, String descrizione
+			,	String imgurl, String categoria) {
 		super();
 		this.titolo = titolo;
 		this.industryID = industryID;
 		this.descrizione = descrizione;
 		this.imgurl = imgurl;
 		this.autori = new HashSet<String>();
+		this.categoria=categoria;
+	}
+	
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public String getDescrizione() {
@@ -105,7 +117,7 @@ public class BookModel implements DataModel {
 	public String toString() {
 		return "BookModel [titolo=" + titolo + ", industryID=" + industryID
 				+ ", descrizione=" + descrizione + ", imgurl=" + imgurl
-				+ ", autori=" + autori + "]";
+				+ ", categoria=" + categoria + ", autori=" + autori + "]";
 	}
 
 	@Override
@@ -114,9 +126,12 @@ public class BookModel implements DataModel {
 		int result = 1;
 		result = prime * result + ((autori == null) ? 0 : autori.hashCode());
 		result = prime * result
+				+ ((categoria == null) ? 0 : categoria.hashCode());
+		result = prime * result
 				+ ((descrizione == null) ? 0 : descrizione.hashCode());
 		result = prime * result + ((imgurl == null) ? 0 : imgurl.hashCode());
-		result = prime * result + ((industryID == null) ? 0 : industryID.hashCode());
+		result = prime * result
+				+ ((industryID == null) ? 0 : industryID.hashCode());
 		result = prime * result + ((titolo == null) ? 0 : titolo.hashCode());
 		return result;
 	}
@@ -134,6 +149,11 @@ public class BookModel implements DataModel {
 			if (other.autori != null)
 				return false;
 		} else if (!autori.equals(other.autori))
+			return false;
+		if (categoria == null) {
+			if (other.categoria != null)
+				return false;
+		} else if (!categoria.equals(other.categoria))
 			return false;
 		if (descrizione == null) {
 			if (other.descrizione != null)
@@ -157,4 +177,6 @@ public class BookModel implements DataModel {
 			return false;
 		return true;
 	}
+
+	
 }
