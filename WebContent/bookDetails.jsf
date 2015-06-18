@@ -14,19 +14,19 @@
 
 		<ui:define name="content">
 			<div class="bookDetails">
-				<div class="bookDetImg">
+				<div class="bookDetails_Left">
 					<img class="bookImg" src="#{bookDetails.selectedBook.imgurl}" alt="#" />
 				</div>
-				<div class="bookDetTitle">
-					<strong>#{bookDetails.selectedBook.titolo}</strong>
-				</div>
-				<!-- 
-				<div class="bookDetAuthors">
-					<h:outputText value="#{bookDetails.selectedBook.autori}" />
-				</div>
-				-->
-				<div class="bookDetDesc">
-					<h:outputText value="#{bookDetails.selectedBook.descrizione}" />
+				<div class="bookDetails_Right">
+					<div class="bookDetTitle">
+						<strong>#{bookDetails.selectedBook.titolo}</strong>
+					</div>
+					<div class="bookDetAuthors">
+						<h:outputText value="#{bookDetails.selectedBook.autori}" />
+					</div>
+					<div class="bookDetDesc">
+						<h:outputText value="#{bookDetails.selectedBook.descrizione}" />
+					</div>
 				</div>
 			</div>
 		</ui:define>

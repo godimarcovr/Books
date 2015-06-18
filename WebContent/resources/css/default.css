@@ -591,7 +591,24 @@ ul.style4 .first {
 /******************** BOOK DETAILS *********************/
 
 .bookDetails {
-	position: relative;
+	width: 100%;
+	height: 250px;
+}
+.bookDetails_Left {
+	width:25%;
+	float: left;
+	height: 100%;
+}
+
+.bookDetails_Center {
+	width: 5%;
+}
+
+.bookDetails_Right {
+	width:70%; 
+	float: left;
+	background-color: silver;
+	height: 100%;
 }
 
 .bookDetImg {
@@ -601,21 +618,37 @@ ul.style4 .first {
 }
 
 .bookImg {
-	width: 100%;
+	height: 100%;
+	border: thin solid black;
+}
+
+.bookDetTitle strong {
+	font-size: 13pt;
 }
 
 .bookDetTitle {
 	float: left;
-	width: 65%;
+	width: 100%;
+	height: 15%;
+	vertical-align: middle;
+	border-bottom: thin solid darkgray;
 }
 
 .bookDetAuthors {
 	float:left;
-	width: 65%;
+	width: 100%;
+	height: 15%;
+	font-size: 10pt;
 }
 
 .bookDetDesc {
 	float:left;
-	width: 65%;
+	width: 100%;
+	height: 70%;
 }
+
+.bookTableCell {
+	margin: 10px 0px;
+}
+
 

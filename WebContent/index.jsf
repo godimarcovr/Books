@@ -9,7 +9,7 @@
 <title>IGNORED</title>
 </head>
 <body>
-	<ui:composition template="/templates/layout.jsf">
+	<ui:composition template="/templates/main_layout.jsf">
 		<ui:define name="windowTitle">
     		#{msgs.base_title} - #{msgs.index_title}
   		</ui:define>

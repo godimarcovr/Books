@@ -67,6 +67,11 @@
 				</ui:insert>
 			</div>
 		</div>
+		<div id="banner" class="container">
+			<span>
+				Libri per tutti<br /> chiedi, leggi, presta
+			</span>
+		</div>
 	</div>
 	<div id="wrapper">
 		<div id="staff" class="container">

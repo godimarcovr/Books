@@ -17,24 +17,21 @@
 				<table class="bookTable">
 					<ui:repeat id="searchedBooksTable" var="R"
 						value="#{searchResults.cache}">
-						<tr>
-							<td class="bookCellRow">
-								<h:commandLink action="#{searchResults.selectBook(R)}" >
-									<div class="bookCellImg">
-										<img class="bookThumbnail" src="#{R.imgurl}" alt="#" />
-									</div>
-									<div class="bookCellTitle">
+						<h:commandLink action="#{searchResults.selectBook(R)}" >
+							<div class="bookDetails bookTableCell">
+								<div class="bookDetails_Left">
+									<img class="bookImg" src="#{R.imgurl}" alt="#" />
+								</div>
+								<div class="bookDetails_Right">
+									<div class="bookDetTitle">
 										<strong>#{R.titolo}</strong>
 									</div>
-	
-									<div class="bookCellAuthors">
+									<div class="bookDetAuthors">
 										<h:outputText value="#{R.autori}" />
 									</div>
-									
-									<div class="clear" />
-								</h:commandLink>
-							</td>						
-						</tr>
+								</div>
+							</div>
+						</h:commandLink>
 					</ui:repeat>
 				</table>
 			</h:form>

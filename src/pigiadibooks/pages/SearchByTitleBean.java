@@ -22,7 +22,7 @@ public class SearchByTitleBean {
 	private List<BookModel> cache;
 	private String lastTitleSearched;
 	
-	//@ManagedProperty(value="#{bookDetails}")
+	@ManagedProperty(value="#{bookDetails}")
     private BookDetails bookDetails;
 	
 	public SearchByTitleBean(){}
@@ -69,7 +69,7 @@ public class SearchByTitleBean {
 	public void setCache(List<BookModel> cache) {
 		this.cache = cache;
 	}
-	/*
+	
 	public BookDetails getBookDetails() {
 		return bookDetails;
 	}
@@ -77,18 +77,12 @@ public class SearchByTitleBean {
 	public void setBookDetails(BookDetails bookDetails) {
 		this.bookDetails = bookDetails;
 	}
-	*/
 
 	public String selectBook(BookModel book) {
-		/*
-		System.out.println(this.bookDetails);
 		if (this.bookDetails != null && book != null) {
-			System.out.println(book.getTitolo());
 			this.bookDetails.setSelectedBook(book);
 			return "bookDetails";
 		}
-		*/
 		return null;
-		
 	}
 }

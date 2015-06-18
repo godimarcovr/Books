@@ -16,10 +16,13 @@ public class BookDetails {
 	
 	@PostConstruct
 	public void init() {
+		this.selectedBook = null;
+		/*
 		this.selectedBook = new BookModel("I, Robot", 
 				"9780007532278", 
 				"Voyager Classics - timeless masterworks of science fiction and fantasy. A beautiful clothbound edition of I, Robot, the classic collection of robot stories from the master of the genre.", 
 				"http://books.google.it/books/content?id=vwb5mgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api");
+		*/
 	}
 	
 	public BookModel getSelectedBook() {
