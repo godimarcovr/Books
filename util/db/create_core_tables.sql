@@ -6,7 +6,8 @@ CREATE TABLE Users (
 	password VARCHAR(40) NOT NULL,
 	email VARCHAR(50) NOT NULL UNIQUE,
 	nome VARCHAR(20),
-	cognome VARCHAR(20)
+	cognome VARCHAR(20),
+	ruolo VARCHAR(10)
 );
 
 CREATE TABLE Libro (

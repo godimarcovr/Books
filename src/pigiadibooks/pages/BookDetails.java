@@ -1,28 +1,44 @@
 package pigiadibooks.pages;
 
+import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import pigiadibooks.dbhandler.MyDriver;
 import pigiadibooks.model.BookModel;
+import pigiadibooks.model.DataModel;
+import pigiadibooks.model.OwnBookModel;
+import pigiadibooks.model.PublicUserModel;
+import pigiadibooks.pagesutil.NearbyFakePublicUserModelStrategy;
+import pigiadibooks.pagesutil.OwnedBooks;
 
 @ManagedBean(name = "bookDetails", eager=true)
 @SessionScoped
-public class BookDetails {
+public class BookDetails implements Serializable{
 	
 	private BookModel selectedBook;
-
+	private OwnedBooks ownedBooks;
+	private Boolean isOwned;
+	
+	private OwnBookModel mioLibro;
+	
+	@ManagedProperty(value="#{auth}")
+	private AuthBean auth;
+	
 	public BookDetails() {}
 	
 	@PostConstruct
 	public void init() {
-		this.selectedBook = null;
-		/*
-		this.selectedBook = new BookModel("I, Robot", 
-				"9780007532278", 
-				"Voyager Classics - timeless masterworks of science fiction and fantasy. A beautiful clothbound edition of I, Robot, the classic collection of robot stories from the master of the genre.", 
-				"http://books.google.it/books/content?id=vwb5mgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api");
-		*/
+		this.selectedBook = new BookModel();
+		this.ownedBooks=null;
+		this.isOwned=null;
+		this.mioLibro=new OwnBookModel();
 	}
 	
 	public BookModel getSelectedBook() {
@@ -31,6 +47,119 @@ public class BookDetails {
 
 	public void setSelectedBook(BookModel selectedBook) {
 		this.selectedBook = selectedBook;
+		this.isOwned=null;
+		
+		if(this.getLoggedIn() && this.ownedBooks==null){
+			this.ownedBooks=new OwnedBooks(auth.getUsername());
+		}
 	}
+	
+	//******************************GESTIONE INTERAZIONE
+	
+	public AuthBean getAuth() {
+		return auth;
+	}
+
+	public void setAuth(AuthBean auth) {
+		this.auth = auth;
+	}
+
+	//true se utente è loggato
+	public boolean getLoggedIn(){
+		if(auth.isLoggedIn()){
+			return true;
+		}
+		else{
+			this.ownedBooks=null;
+			this.isOwned=null;
+			return false;
+		}
+	}
+	
+	//true se utente possiede libro
+	@SuppressWarnings("finally")
+	public boolean getOwned(){
+		if(this.getLoggedIn()){
+			if(this.isOwned==null){
+				try {
+					this.isOwned=false;
+					for(DataModel dm:this.ownedBooks.selectOwnBooks()){
+						OwnBookModel obm=(OwnBookModel) dm;
+						if (this.selectedBook.getindustryID().equals(obm.getIndustryID())){
+							this.isOwned=true;
+							this.mioLibro=obm;
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					this.isOwned=false;
+				}
+				finally{
+					return this.isOwned;
+				}
+			}
+			else{
+				return this.isOwned;
+			}
+		}
+		else{
+			return false;
+		}
+		
+	}
+	
+	//torna utenti che possiedono questo libro ordinati per vicinanza geografica
+	public List<PublicUserModel> getNearbyOwners(){
+		if(this.getLoggedIn()){
+			try {
+				NearbyFakePublicUserModelStrategy nearbyUsersStrat=
+						new NearbyFakePublicUserModelStrategy(auth.getUsername(),this.selectedBook.getindustryID());
+				List<DataModel> ldm=nearbyUsersStrat.getSelectedBeans(MyDriver.getInstance().getConnection());
+				List<PublicUserModel> toRet=new ArrayList<PublicUserModel>(ldm.size());
+				for (DataModel dm : ldm) {
+					toRet.add((PublicUserModel) dm);
+				}
+				return toRet;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+		}
+		return new ArrayList<PublicUserModel>(0);
+	}
+	
+	public String sendBorrowRequest(){
+		return "Email richiesta prestito inviata!";
+	}
+	
+	//da usare per il tasto "Ce l'ho!"
+	public String iOwnIt(){
+		if(this.getLoggedIn()){
+			try {
+				this.ownedBooks.insertBook(this.selectedBook.getindustryID());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return "bookDetails.jsf?faces-redirect=true";
+	}
+
+	public OwnBookModel getMioLibro() {
+		return mioLibro;
+	}
+
+	public void setMioLibro(OwnBookModel mioLibro) {
+		this.mioLibro = mioLibro;
+	}
+
+	@Override
+	public String toString() {
+		return "BookDetails [selectedBook=" + selectedBook + ", ownedBooks="
+				+ ownedBooks + ", isOwned=" + isOwned + ", mioLibro="
+				+ mioLibro + ", auth=" + auth + "]";
+	}	
+	
+	
 	
 }

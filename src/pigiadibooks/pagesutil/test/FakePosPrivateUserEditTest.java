@@ -18,7 +18,7 @@ public class FakePosPrivateUserEditTest {
 		try {
 			edit.insertUser(
 					new FakePosPrivateUserModel(username, "Francesco", "Giuliari", "pancettapepata"
-							, "artix93@gmail.com", 13.7f, 73.1f));
+							, "artix93@gmail.com", 13.7f, 73.1f,"user"));
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
