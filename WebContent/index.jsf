@@ -16,7 +16,7 @@
 
 		<ui:define name="content">
 			<h:form>
-				<h:inputText class="mainPageSearch" value="#{mainView.searchByTitle}" />
+				<h:inputText class="mainPageSearch" value="#{mainView.searchResults.title}" />
 				
 				<h:commandLink action="#{mainView.search()}">
 					<div id="bigSearchButton" class="redButton">

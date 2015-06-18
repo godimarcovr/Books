@@ -15,14 +15,6 @@ public class MainView implements Serializable{
     private SearchByTitleBean searchResults;
 	
 	public MainView() {}
-
-	public String getSearchByTitle() {
-		return this.searchResults.getTitle();
-	}
-
-	public void setSearchByTitle(String searchByTitle) {
-		this.searchResults.setTitle(searchByTitle);
-	}
 	
 	public SearchByTitleBean getSearchResults() {
 		return searchResults;
