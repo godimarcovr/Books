@@ -27,7 +27,7 @@ public class LoginLogger {
 	static String[] province=new String[]{"VR","MI","RM","PD","TO","FI","RN","VE","VI","PA"};
 	
 	public void insertLoginWithRandomProvincia(String user) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-		this.insertLogin(user, province[(new Random()).nextInt()]);
+		this.insertLogin(user, province[(new Random()).nextInt()%10]);
 	}
 	
 	public void insertLogin(String user, String prov) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
