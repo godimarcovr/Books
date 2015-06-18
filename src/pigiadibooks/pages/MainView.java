@@ -1,5 +1,7 @@
 package pigiadibooks.pages;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -7,7 +9,7 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "mainView", eager=true)
 @SessionScoped
-public class MainView {
+public class MainView implements Serializable{
 	
 	@ManagedProperty(value="#{searchResults}")
     private SearchByTitleBean searchResults;

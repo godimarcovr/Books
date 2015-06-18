@@ -1,6 +1,7 @@
 package pigiadibooks.pages;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.security.GeneralSecurityException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import pigiadibooks.pagesutil.BookLookup;
 
 @ManagedBean(name = "searchResults", eager=true)
 @SessionScoped
-public class SearchByTitleBean {
+public class SearchByTitleBean implements Serializable{
 	
 	private BookLookup lookup=null;
 	private List<BookModel> cache;
