@@ -35,9 +35,13 @@ public class NearbyFakePublicUserModelStrategy extends DataBeanGetStrategy {
 						, "PGF."+this.ref_posuser+"='"+username+"' ");
 		Connection c=MyDriver.getInstance().getConnection();
 		ResultSet rs=getFakeCoords.executeQueryOnConnection(c);
-		rs.next();
-		this.posX=rs.getFloat(this.ref_x);
-		this.posY=rs.getFloat(this.ref_y);
+		if(rs.next()){
+			this.posX=rs.getFloat(this.ref_x);
+			this.posY=rs.getFloat(this.ref_y);
+		}else{
+			this.posX=0.0f;
+			this.posY=0.0f;
+		}
 		rs.getStatement().close();
 		rs.close();
 		c.close();

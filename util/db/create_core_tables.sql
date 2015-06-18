@@ -1,4 +1,4 @@
---da fare politiche di cascade
+﻿--da fare politiche di cascade
 --aggiungere vincoli ad esempio industryid solo numerici
 
 CREATE TABLE Users (
@@ -11,7 +11,7 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Libro (
-	industryid VARCHAR(30) PRIMARY KEY,
+	industryid VARCHAR(50) PRIMARY KEY,
 	titolo TEXT NOT NULL,
 	descrizione TEXT,
 	imgurl TEXT,
@@ -23,13 +23,13 @@ CREATE TABLE Autore (
 );
 
 CREATE TABLE ScrittoDa (
-	libro_industryid TEXT REFERENCES Libro(industryid),
+	libro_industryid VARCHAR(50) REFERENCES Libro(industryid),
 	autore_nome VARCHAR(30) REFERENCES Autore(nome),
 	PRIMARY KEY(libro_industryid,autore_nome)
 );
 
 CREATE TABLE LibroPosseduto (
-	libro_industryid VARCHAR(13) REFERENCES Libro(industryid),
+	libro_industryid VARCHAR(50) REFERENCES Libro(industryid),
 	user_username VARCHAR(30) REFERENCES Users(username),
 	condizioni INTEGER CHECK(condizioni>=1 AND condizioni<=5),
 	voto INTEGER CHECK(voto>=1 AND voto<=10),

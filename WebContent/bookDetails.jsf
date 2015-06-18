@@ -1,4 +1,5 @@
-		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -15,7 +16,8 @@
 		<ui:define name="content">
 			<div class="bookDetails">
 				<div class="bookDetails_Left">
-					<img class="bookImg" src="#{bookDetails.selectedBook.imgurl}" alt="#" />
+					<img class="bookImg" src="#{bookDetails.selectedBook.imgurl}"
+						alt="#" />
 				</div>
 				<div class="bookDetails_Right">
 					<div class="bookDetTitle">
@@ -23,12 +25,85 @@
 					</div>
 					<div class="bookDetAuthors">
 						<h:outputText value="#{bookDetails.selectedBook.autori}" />
+						<br />
+						<h:outputText value="#{bookDetails.selectedBook.categoria}" />
 					</div>
 					<div class="bookDetDesc">
 						<h:outputText value="#{bookDetails.selectedBook.descrizione}" />
 					</div>
 				</div>
 			</div>
+			<h:panelGroup rendered="#{bookDetails.loggedIn}">
+				<h:panelGroup rendered="#{bookDetails.owned}">
+					<h:form>
+						<h:commandLink action="#{bookDetails.iDontOwnIt()}">
+							<div id="bigSearchButton" class="redButton">
+								<h:outputText value="#{msgs.idontownitButton_label}" />
+							</div>
+						</h:commandLink>
+					</h:form>
+					<h:form>
+						<h:selectOneMenu value="#{bookDetails.mioLibro.voto}">
+
+							<f:selectItem itemValue="#{0}" itemLabel="-- voto --" />
+							<f:selectItem itemValue="#{1}" itemLabel="1" />
+							<f:selectItem itemValue="#{2}" itemLabel="2" />
+							<f:selectItem itemValue="#{3}" itemLabel="3" />
+							<f:selectItem itemValue="#{4}" itemLabel="4" />
+							<f:selectItem itemValue="#{5}" itemLabel="5" />
+							<f:selectItem itemValue="#{6}" itemLabel="6" />
+							<f:selectItem itemValue="#{7}" itemLabel="7" />
+							<f:selectItem itemValue="#{8}" itemLabel="8" />
+							<f:selectItem itemValue="#{9}" itemLabel="9" />
+							<f:selectItem itemValue="#{10}" itemLabel="10" />
+						</h:selectOneMenu>
+						<h:selectOneMenu value="#{bookDetails.mioLibro.condizioni}">
+							<f:selectItem itemValue="#{0}" itemLabel="-- voto --" />
+							<f:selectItem itemValue="#{1}" itemLabel="1" />
+							<f:selectItem itemValue="#{2}" itemLabel="2" />
+							<f:selectItem itemValue="#{3}" itemLabel="3" />
+							<f:selectItem itemValue="#{4}" itemLabel="4" />
+							<f:selectItem itemValue="#{5}" itemLabel="5" />
+						</h:selectOneMenu>
+						<h:inputText class="mainPageSearch"
+							value="#{bookDetails.mioLibro.recensione}" />
+						<h:commandLink action="#{bookDetails.submitReview()}">
+							<div id="bigSearchButton" class="redButton">
+								<h:outputText value="#{msgs.submitreviewButton_label}" />
+							</div>
+						</h:commandLink>
+					</h:form>
+				</h:panelGroup>
+				<h:panelGroup rendered="#{!bookDetails.owned}">
+					<h:form>
+						<h:commandLink action="#{bookDetails.iOwnIt()}">
+							<div id="bigSearchButton" class="redButton">
+								<h:outputText value="#{msgs.iownitButton_label}" />
+							</div>
+						</h:commandLink>
+					</h:form>
+					<h:form>
+						<h:dataTable var="O" value="#{bookDetails.nearbyOwners}">
+							<h:column>
+							#{O.username}
+						</h:column>
+							<h:column>
+							#{O.nome}
+						</h:column>
+							<h:column>
+							#{O.cognome}
+						</h:column>
+							<h:column>
+								<h:commandLink action="#{bookDetails.borrow(O)}">
+									<div id="bigSearchButton" class="redButton">
+										<h:outputText value="#{bookDetails.isBorrowed(O)}" />
+									</div>
+								</h:commandLink>
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</h:panelGroup>
+			</h:panelGroup>
 		</ui:define>
 	</ui:composition>
 </body>

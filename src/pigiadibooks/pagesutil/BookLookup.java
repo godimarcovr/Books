@@ -55,50 +55,53 @@ public class BookLookup {
 	}
 	
 	private void insertBooks(List<BookModel> toIns,Connection c) throws SQLException{
-		Object[][] params=new Object[toIns.size()][5];
-		for(int i=0;i<toIns.size();i++){
-			BookModel bm=toIns.get(i);
-			params[i][0]=bm.getindustryID();
-			params[i][1]=bm.getTitolo();
-			params[i][2]=bm.getDescrizione();
-			params[i][3]=bm.getImgurl();
-			params[i][4]=bm.getCategoria();
-		}
-		SQLCode insertBooks=SQLCodeBuilder.createInsertIntoOnAllColumns("Libro",params);
-		((DMLCode)insertBooks).setIgnoreWarnings(true);
-		
-		Set<String> autori=new HashSet<String>();
-		for (BookModel bm : toIns) {
-			autori.addAll(bm.getAutori());
-		}
-		Object[][] paramsAutori=new Object[autori.size()][1];
-		int iAut=0;
-		for (String autore:autori) {
-			paramsAutori[iAut][0]=autore;
-			iAut++;
-		}
-		SQLCode insertAuthors=SQLCodeBuilder.createInsertIntoOnAllColumns("Autore", paramsAutori);
-		((DMLCode)insertAuthors).setIgnoreWarnings(true);
-		
-		
-		List<String> wby_autori=new ArrayList<String>();
-		List<String> wby_libri=new ArrayList<String>();
-		for (BookModel bm : toIns) {
-			for(String autore:bm.getAutori()){
-				wby_libri.add(bm.getindustryID());
-				wby_autori.add(autore);
+		if(toIns.size()>0){
+			Object[][] params=new Object[toIns.size()][5];
+			for(int i=0;i<toIns.size();i++){
+				BookModel bm=toIns.get(i);
+				params[i][0]=bm.getindustryID();
+				params[i][1]=bm.getTitolo();
+				params[i][2]=bm.getDescrizione();
+				params[i][3]=bm.getImgurl();
+				params[i][4]=bm.getCategoria();
 			}
+			SQLCode insertBooks=SQLCodeBuilder.createInsertIntoOnAllColumns("Libro",params);
+			((DMLCode)insertBooks).setIgnoreWarnings(true);
+			
+			Set<String> autori=new HashSet<String>();
+			for (BookModel bm : toIns) {
+				autori.addAll(bm.getAutori());
+			}
+			Object[][] paramsAutori=new Object[autori.size()][1];
+			int iAut=0;
+			for (String autore:autori) {
+				paramsAutori[iAut][0]=autore;
+				iAut++;
+			}
+			SQLCode insertAuthors=SQLCodeBuilder.createInsertIntoOnAllColumns("Autore", paramsAutori);
+			((DMLCode)insertAuthors).setIgnoreWarnings(true);
+			
+			
+			List<String> wby_autori=new ArrayList<String>();
+			List<String> wby_libri=new ArrayList<String>();
+			for (BookModel bm : toIns) {
+				for(String autore:bm.getAutori()){
+					wby_libri.add(bm.getindustryID());
+					wby_autori.add(autore);
+				}
+			}
+			Object[][] paramsWBy=new Object[wby_autori.size()][2];
+			for(int i=0;i<wby_autori.size();i++){
+				paramsWBy[i][0]=wby_libri.get(i);
+				paramsWBy[i][1]=wby_autori.get(i);
+			}
+			SQLCode insertWrittenBy=SQLCodeBuilder.createInsertIntoOnAllColumns("ScrittoDa", paramsWBy);
+			((DMLCode)insertWrittenBy).setIgnoreWarnings(true);
+			
+			insertBooks.executeQueryOnConnection(c);
+			insertAuthors.executeQueryOnConnection(c);
+			insertWrittenBy.executeQueryOnConnection(c);
 		}
-		Object[][] paramsWBy=new Object[wby_autori.size()][2];
-		for(int i=0;i<wby_autori.size();i++){
-			paramsWBy[i][0]=wby_libri.get(i);
-			paramsWBy[i][1]=wby_autori.get(i);
-		}
-		SQLCode insertWrittenBy=SQLCodeBuilder.createInsertIntoOnAllColumns("ScrittoDa", paramsWBy);
-		((DMLCode)insertWrittenBy).setIgnoreWarnings(true);
 		
-		insertBooks.executeQueryOnConnection(c);
-		insertAuthors.executeQueryOnConnection(c);
-		insertWrittenBy.executeQueryOnConnection(c);
 	}
 }

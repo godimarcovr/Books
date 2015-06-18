@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 
 import pigiadibooks.dbhandler.MyDriver;
 import pigiadibooks.model.BookModel;
@@ -30,6 +31,7 @@ public class BookDetails implements Serializable{
 	
 	@ManagedProperty(value="#{auth}")
 	private AuthBean auth;
+	private PublicUserModel lastBorrowRequested;
 	
 	public BookDetails() {}
 	
@@ -39,6 +41,7 @@ public class BookDetails implements Serializable{
 		this.ownedBooks=null;
 		this.isOwned=null;
 		this.mioLibro=new OwnBookModel();
+		this.lastBorrowRequested=null;
 	}
 	
 	public BookModel getSelectedBook() {
@@ -48,6 +51,7 @@ public class BookDetails implements Serializable{
 	public void setSelectedBook(BookModel selectedBook) {
 		this.selectedBook = selectedBook;
 		this.isOwned=null;
+		this.lastBorrowRequested=null;
 		
 		if(this.getLoggedIn() && this.ownedBooks==null){
 			this.ownedBooks=new OwnedBooks(auth.getUsername());
@@ -72,6 +76,7 @@ public class BookDetails implements Serializable{
 		else{
 			this.ownedBooks=null;
 			this.isOwned=null;
+			this.lastBorrowRequested=null;
 			return false;
 		}
 	}
@@ -138,11 +143,25 @@ public class BookDetails implements Serializable{
 		if(this.getLoggedIn()){
 			try {
 				this.ownedBooks.insertBook(this.selectedBook.getindustryID());
+				this.isOwned=true;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return "bookDetails.jsf?faces-redirect=true";
+		return "bookDetails";
+	}
+	
+	public String iDontOwnIt(){
+		if(this.getLoggedIn()){
+			try {
+				this.ownedBooks.deleteBook(this.selectedBook.getindustryID());
+				this.isOwned=false;
+				this.lastBorrowRequested=null;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return "bookDetails";
 	}
 
 	public OwnBookModel getMioLibro() {
@@ -160,6 +179,30 @@ public class BookDetails implements Serializable{
 				+ mioLibro + ", auth=" + auth + "]";
 	}	
 	
+	public String submitReview(){
+		try {
+			this.ownedBooks.updateBook(this.mioLibro.getIndustryID()
+					, this.mioLibro.getCondizioni(), this.mioLibro.getVoto()
+					, this.mioLibro.getRecensione());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "bookDetails";
+	}
 	
+	public String isBorrowed(PublicUserModel pum){
+		if(pum.equals(this.lastBorrowRequested)){
+			return "Richiesta Inviata";
+		}
+		else{
+			return "Chiedi in prestito!";
+		}
+	}
+	
+	public String borrow(PublicUserModel pum){
+		this.lastBorrowRequested=pum;
+		return "bookDetails";
+	}
 	
 }
