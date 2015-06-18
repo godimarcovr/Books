@@ -9,21 +9,16 @@
 <title>IGNORED</title>
 </head>
 <body>
-	<ui:composition template="/templates/main_layout.jsf">
+	<ui:composition template="/templates/layout.jsf">
 		<ui:define name="windowTitle">
-    		#{msgs.base_title} - #{msgs.index_title}
+    		#{msgs.AgencyHome}
+    		<h:outputText value="#{a.msg}"/>
   		</ui:define>
 
+		<h:outputText value="#{a.msg}"/>
+
 		<ui:define name="content">
-			<h:form>
-				<h:inputText class="mainPageSearch" value="#{mainView.searchByTitle}" />
-				
-				<h:commandLink action="#{mainView.search()}">
-					<div id="bigSearchButton" class="redButton">
-						<h:outputText value="#{msgs.searchButton_label}" />
-					</div>
-				</h:commandLink>
-			</h:form>
+			<h:outputText value="#{a.msg}"/>
 		</ui:define>
 	</ui:composition>
 </body>

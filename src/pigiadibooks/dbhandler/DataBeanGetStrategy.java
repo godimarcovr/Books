@@ -11,10 +11,13 @@ import pigiadibooks.model.DataModel;
 
 public abstract class DataBeanGetStrategy {
 	
-	private Query code;
+	protected Query code;
 	
 	public DataBeanGetStrategy(Query select){
 		this.code=select;
+	}
+	
+	public DataBeanGetStrategy(){
 	}
 	
 	public List<DataModel> getSelectedBeans(Connection c) throws SQLException{

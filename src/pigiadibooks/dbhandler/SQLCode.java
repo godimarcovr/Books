@@ -15,6 +15,10 @@ public abstract class SQLCode {
 	public abstract PreparedStatement prepareStatement(Connection c) throws SQLException;
 	
 	public abstract ResultSet executeQueryOnConnection(Connection c) throws SQLException;
+
+	public String getCode() {
+		return code;
+	}
 	
 	
 	

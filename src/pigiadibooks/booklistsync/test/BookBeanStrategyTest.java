@@ -11,6 +11,7 @@ import org.junit.Test;
 import pigiadibooks.booklistsync.BookBeanStrategy;
 import pigiadibooks.dbhandler.DataBeanGetStrategy;
 import pigiadibooks.dbhandler.MyDriver;
+import pigiadibooks.dbhandler.Query;
 import pigiadibooks.dbhandler.SQLCode;
 import pigiadibooks.dbhandler.SQLCodeBuilder;
 import pigiadibooks.model.BookModel;
@@ -26,10 +27,13 @@ public class BookBeanStrategyTest {
 
 	@Test
 	public void testGetSelectedBeans() {
-
+		
 		String autore="cicciopasticcio";
 		String titolo="asdasdasd";
 		String industryid="1234561234561";
+		String from="ScrittoDa AS SD JOIN Libro L ON SD.libro_industryid=L.industryid "
+				+ "JOIN Autore A ON A.nome=SD.autore_nome ";
+		BookModel current;
 		
 		SQLCode deleteWrittenBy=SQLCodeBuilder
 				.createDeleteFromOnlyEquals("ScrittoDa", new String[]{"libro_industryid","autore_nome"}
@@ -53,20 +57,34 @@ public class BookBeanStrategyTest {
 						, new Object[][]{{industryid,autore}});
 		
 		try {
-			assertNull(deleteWrittenBy.executeQueryOnConnection(MyDriver.getInstance().getConnection()));
-			assertNull(deleteBook.executeQueryOnConnection(MyDriver.getInstance().getConnection()));
-			assertNull(deleteAuthor.executeQueryOnConnection(MyDriver.getInstance().getConnection()));
-			
 			assertNull(insertBook.executeQueryOnConnection(MyDriver.getInstance().getConnection()));
 			assertNull(insertAuthor.executeQueryOnConnection(MyDriver.getInstance().getConnection()));
 			assertNull(insertWrittenBy.executeQueryOnConnection(MyDriver.getInstance().getConnection()));
+			//***
+			Query select=(Query) SQLCodeBuilder.createSelectAllFromWhere(from
+					, "L.industryid='"+industryid+"'");
+			BookBeanStrategy bbs=new BookBeanStrategy(select);
+			try {
+				System.out.println(bbs.getSelectedBeans(MyDriver.getInstance().getConnection()));
+				current=(BookModel) bbs.getSelectedBeans(MyDriver.getInstance().getConnection()).get(0);
+			} catch (InstantiationException | IllegalAccessException
+					| ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+				System.err.println("ERRORE: verrà visualizzata pagina vuota");
+				current=new BookModel();
+			}
+			assertTrue(current.getindustryID().equals(industryid));
+			//***
+			assertNull(deleteWrittenBy.executeQueryOnConnection(MyDriver.getInstance().getConnection()));
+			assertNull(deleteBook.executeQueryOnConnection(MyDriver.getInstance().getConnection()));
+			assertNull(deleteAuthor.executeQueryOnConnection(MyDriver.getInstance().getConnection()));
 			
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		/*
 		DataBeanGetStrategy dbs=new BookBeanStrategy();
 		try {
 			Connection c=MyDriver.getInstance().getConnection();
@@ -87,7 +105,7 @@ public class BookBeanStrategyTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fail("ERROR");
-		}
+		}*/
 	}
-
+	
 }
