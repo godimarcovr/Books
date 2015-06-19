@@ -1,4 +1,5 @@
-		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -15,7 +16,8 @@
 		<ui:define name="content">
 			<div class="bookDetails">
 				<div class="bookDetails_Left">
-					<img class="bookImg" src="#{bookDetails.selectedBook.imgurl}" alt="#" />
+					<img class="bookImg" src="#{bookDetails.selectedBook.imgurl}"
+						alt="#" />
 				</div>
 				<div class="bookDetails_Right">
 					<div class="bookDetTitle">
@@ -26,6 +28,65 @@
 					</div>
 					<div class="bookDetDesc">
 						<h:outputText value="#{bookDetails.selectedBook.descrizione}" />
+					</div>
+				</div>
+			</div>
+			<div class="clear" />
+			<div id="bookDetails_content_for_logged">
+				<div id="content_for_owner">
+					<table style="width: 100%; text-align: left;">
+						<tr>
+							<td>
+								Condizioni
+							</td>
+							<td>
+								<h:selectOneMenu value="">
+								   	<f:selectItem itemValue="Cream Latte" itemLabel="Coffee3 - Cream Latte" />
+								   	<f:selectItem itemValue="Extreme Mocha" itemLabel="Coffee3 - Extreme Mocha" />
+								   	<f:selectItem itemValue="Buena Vista" itemLabel="Coffee3 - Buena Vista" />
+								</h:selectOneMenu>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Voto
+							</td>
+							<td>
+								<h:selectOneMenu value="">
+								   	<f:selectItem itemValue="Cream Latte" itemLabel="Coffee3 - Cream Latte" />
+								   	<f:selectItem itemValue="Extreme Mocha" itemLabel="Coffee3 - Extreme Mocha" />
+								   	<f:selectItem itemValue="Buena Vista" itemLabel="Coffee3 - Buena Vista" />
+								</h:selectOneMenu>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Descrizione
+							</td>
+							<td>
+							
+							</td>
+						</tr>
+					</table>
+				
+					<h:selectOneMenu value="">
+					   	<f:selectItem itemValue="Cream Latte" itemLabel="Coffee3 - Cream Latte" />
+					   	<f:selectItem itemValue="Extreme Mocha" itemLabel="Coffee3 - Extreme Mocha" />
+					   	<f:selectItem itemValue="Buena Vista" itemLabel="Coffee3 - Buena Vista" />
+					</h:selectOneMenu>
+				</div>
+				<div id="content_for_non_owner">
+					<div class="redButton holdButton">
+						#{msgs.HoldingButton_label}
+					</div>
+					<div class="clear" />
+					<div id="BookOwners">
+						<strong>#{msgs.bookOwnersTable_label}</strong>
+						<div id="BookOwnersTable">
+							<ui:repeat var="" value="">
+								<!-- TODO -->
+							</ui:repeat>
+						</div>
 					</div>
 				</div>
 			</div>
