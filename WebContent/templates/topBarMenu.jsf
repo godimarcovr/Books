@@ -9,12 +9,6 @@
 </head>
 <body>
 	<ui:composition>
-		<h:form>
-			<ul>
-				<li><h:commandLink action="offerte" value="Vedi offerte" rendered="#{User.loggedIn}"/></li>
-				
-			</ul>
-		</h:form>
 	</ui:composition>
 </body>
 </html>

@@ -27,7 +27,7 @@ public class MainView implements Serializable{
 	public String search() {
 		if (this.searchResults.getTitle() != null 
 				&& !this.searchResults.getTitle().equals(""))
-			return "searchResults";
+			return "/searchResults.jsf?faces-redirect=true";
 		return null;
 	}
 }

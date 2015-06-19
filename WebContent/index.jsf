@@ -19,7 +19,7 @@
 				<h:inputText class="mainPageSearch" value="#{mainView.searchResults.title}" />
 				
 				<h:commandLink action="#{mainView.search()}">
-					<div id="bigSearchButton" class="redButton">
+					<div class="bigButton redButton">
 						<h:outputText value="#{msgs.searchButton_label}" />
 					</div>
 				</h:commandLink>

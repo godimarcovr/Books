@@ -15,26 +15,74 @@
   		</ui:define>
 
 		<ui:define name="content">
-			<h:panelGroup layout="block" rendered="#{register.regFailed}">
+				<div class="contentBlock">
+				<h:panelGroup layout="block" rendered="#{register.regFailed}">
 					<p>
-						Registrazione fallita!
+						<h:outputText value="#{msgs.failedsignup}" />
 					</p>
 				</h:panelGroup>
-			<h:form>
-				<h:inputText class="mainPageSearch" value="#{register.username}" />
-				<h:inputSecret class="mainPageSearch" value="#{register.password}" />
-				<h:inputText class="mainPageSearch" value="#{register.email}" />
-				<h:inputText class="mainPageSearch" value="#{register.nome}" />
-				<h:inputText class="mainPageSearch" value="#{register.cognome}" />
-				<h:inputText class="mainPageSearch" value="#{register.x}" />
-				<h:inputText class="mainPageSearch" value="#{register.y}" />
-				
-				<h:commandLink action="#{register.register()}">
-					<div id="bigSearchButton" class="redButton">
-						<h:outputText value="Registrati!" />
-					</div>
-				</h:commandLink>
-			</h:form>
+				<h:form>
+					<table style="width: 100%" cellpadding="5px">
+						<col width="20%" />
+						<col width="80%" />
+						<tr>
+							<td class="inputTableLabelColumn"><h:outputText
+									value="#{msgs.username_label}" /></td>
+							<td>
+								<h:inputText class="IT" value="#{register.username}" />
+							</td>
+						</tr>
+						<tr>
+							<td class="inputTableLabelColumn"><h:outputText
+									value="#{msgs.password_label}" /></td>
+							<td>
+								<h:inputSecret class="IT" value="#{register.password}" />
+							</td>
+						</tr>
+						<tr>
+							<td class="inputTableLabelColumn"><h:outputText
+									value="#{msgs.email_label}" /></td>
+							<td>
+								<h:inputText class="IT" value="#{register.email}" />
+							</td>
+						</tr>
+						<tr>
+							<td class="inputTableLabelColumn"><h:outputText
+									value="#{msgs.nome_label}" /></td>
+							<td>
+								<h:inputText class="IT" value="#{register.nome}" />
+							</td>
+						</tr>
+						<tr>
+							<td class="inputTableLabelColumn"><h:outputText
+									value="#{msgs.cognome_label}" /></td>
+							<td>
+								<h:inputText class="IT" value="#{register.cognome}" />
+							</td>
+						</tr>
+						<tr>
+							<td class="inputTableLabelColumn"><h:outputText
+									value="#{msgs.latitude_label}" /></td>
+							<td>
+								<h:inputText class="IT" value="#{register.x}" />
+							</td>
+						</tr>
+						<tr>
+							<td class="inputTableLabelColumn"><h:outputText
+									value="#{msgs.longitude_label}" /></td>
+							<td>
+								<h:inputText class="IT" value="#{register.y}" />
+							</td>
+						</tr>
+					</table>
+					
+					<h:commandLink action="#{register.register()}">
+						<div class=" mediumButton redButton">
+							<h:outputText value="#{msgs.signupButton_label}" />
+						</div>
+					</h:commandLink>
+				</h:form>
+			</div>
 		</ui:define>
 	</ui:composition>
 </body>

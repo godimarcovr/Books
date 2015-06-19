@@ -53,6 +53,10 @@ a:hover {
 	width: 1000px;
 }
 
+.header_container {
+	padding-top: 50px;
+}
+
 /* line 41, C:/Users/Francesco/workspace/ImmobiliareGit/WebContent/resources/css/style.sass */
 .image {
 	display: inline-block;
@@ -218,12 +222,17 @@ ul.contact li a.icon-rss::before {
 		url("/books/javax.faces.resource/images/banner.jpg.jsf") no-repeat
 		scroll center center/cover;
 	border-top: 10px solid #CC0000;
+	color: white;
 }
 
 /* line 152, C:/Users/Francesco/workspace/ImmobiliareGit/WebContent/resources/css/style.sass */
 #header {
 	padding: 5em 0;
 	position: relative;
+}
+
+.header_small {
+	padding-bottom: 30px !important;
 }
 
 /* line 157, C:/Users/Francesco/workspace/ImmobiliareGit/WebContent/resources/css/style.sass */
@@ -282,6 +291,7 @@ ul.contact li a.icon-rss::before {
 #banner {
 	padding: 10em 0;
 }
+
 /* line 197, C:/Users/Francesco/workspace/ImmobiliareGit/WebContent/resources/css/style.sass */
 #banner span {
 	color: #fff;
@@ -501,8 +511,16 @@ ul.style4 .first {
 	text-decoration: none;
 }
 
+.or {
+	vertical-align: bottom; 
+	padding-bottom: 7px;
+	width: 30px;
+	text-align: center;
+}
+
 /* line 353, C:/Users/Francesco/workspace/ImmobiliareGit/WebContent/resources/css/style.sass */
 .redButton {
+	text-align: center;
 	background-color: #CC0000;
 	border-radius: 5px;
 	color: #fff;
@@ -524,9 +542,21 @@ ul.style4 .first {
 	width: 1.5em;
 }
 
+#searchBarButton {
+	margin-left: 30px;
+}
+
+.headerSearch {
+	width: 50% !important;
+}
+
+#centerBanner {
+	margin: auto;
+}
+
 /************** SEARCH PAGE */
 
-#bigSearchButton {
+.bigButton {
 	width: 150px;
 	height: 75px;
 	line-height: 75px;
@@ -534,6 +564,17 @@ ul.style4 .first {
 	margin: auto;
 	margin-top: 15px;
 	font-size: large;
+}
+
+.mediumButton {
+	display: inline-block;
+	line-height: 25px;
+	vertical-align: center;
+	margin: auto;
+	margin-top: 15px;
+	font-size: large;
+	padding-left:  15px;
+	padding-right:  15px;
 }
 
 .mainPageSearch {
@@ -592,7 +633,8 @@ ul.style4 .first {
 
 .bookDetails {
 	width: 100%;
-	height: 250px;
+	min-height: 250px;
+	display: inline-block;
 }
 .bookDetails_Left {
 	width:25%;
@@ -608,7 +650,7 @@ ul.style4 .first {
 	width:70%; 
 	float: left;
 	background-color: silver;
-	height: 100%;
+	padding: 5px;
 }
 
 .bookDetImg {
@@ -639,6 +681,15 @@ ul.style4 .first {
 	width: 100%;
 	height: 15%;
 	font-size: 10pt;
+	padding: 3px;
+}
+
+.bookDetCategories {
+	float:left;
+	width: 100%;
+	height: 15%;
+	font-size: 10pt;
+	padding: 3px;
 }
 
 .bookDetDesc {
@@ -658,4 +709,53 @@ ul.style4 .first {
 	display: inline-block;
 	padding: 5px 25px;
 	line-height: 75px;
+}
+
+.inputTableLabelColumn {
+	text-align: right;
+	vertical-align: text-top;
+}
+
+.descIT {
+	resize: none;
+	width: 90%;
+}
+
+.contentBlock {
+	border: thin solid darkgray;
+	border-radius: 4px;
+	width: 80%;
+  	margin: auto;
+  	margin-top: 20px;
+  	padding: 15px;
+}
+
+.IT {
+	height: 30px;
+	width: 75%;
+	float: left;
+	margin-left: 15px;
+	text-align: center;
+	border: thin solid #AAA;
+	border-radius: 4px;
+	font-size: medium;
+}
+
+.bookUserTableCell {
+	text-align:left;
+	width: 25%;
+}
+
+.rowSeparator {
+	height: 2px;
+	background-color: darkgray;
+	width: 100%;
+}
+.rowSeparatorCell {
+	-webkit-column-span: all; /* Chrome, Safari, Opera */
+    column-span: all;
+    background-color: darkgray;
+    height: 1px;
+    padding: 0px;
+    width: 100%;
 }

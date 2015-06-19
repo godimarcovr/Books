@@ -24,28 +24,61 @@
 			<div id="login">
 				<h:panelGroup layout="block" rendered="#{!auth.isLoggedIn()}">
 					<h:form>
-						<h:commandLink action="/user/profile.jsf?faces-redirect=true"
-							style="text-decoration: none">
-							<div id="loginButton" class="redButton">
-								<h:outputText value="#{msgs.login}" />
-							</div>
-						</h:commandLink>
-						<h:commandLink action="/register.jsf?faces-redirect=true"
-							style="text-decoration: none">
-							<div id="loginButton" class="redButton">
-								<h:outputText value="#{msgs.register}" />
-							</div>
-						</h:commandLink>
+						<table>
+							<tr>
+								<td>
+									<h:commandLink action="/user/profile.jsf?faces-redirect=true"
+										style="text-decoration: none">
+										<div class="mediumButton redButton">
+											<h:outputText value="#{msgs.login}" />
+										</div>
+									</h:commandLink>
+								</td>
+								<td class="or">
+									<h:outputText value="#{msgs.o}" />
+								</td>
+								<td>
+									<h:commandLink action="/register.jsf?faces-redirect=true"
+										style="text-decoration: none">
+										<div class="mediumButton redButton">
+											<h:outputText value="#{msgs.register}" />
+										</div>
+									</h:commandLink>
+								</td>
+							</tr>
+						</table>
 					</h:form>
 				</h:panelGroup>
-				<h:panelGroup layout="block" rendered="#{auth.isLoggedIn()}">
+				<h:panelGroup  layout="block" rendered="#{auth.isLoggedIn()}">
 					<h:form>
-						<h:commandLink action="#{auth.logout()}"
-							style="text-decoration: none">
-							<div id="loginButton" class="redButton">
-								<h:outputText value="#{msgs.logout}" />
-							</div>
-						</h:commandLink>
+						<table>
+							<tr>
+								<td>
+									<h:outputText value="#{msgs.welcome}" />
+									<h:outputText value="#{auth.username}" />
+								</td>
+								<td>
+									<h:commandLink action="/user/profile.jsf?faces-redirect=true"
+										style="text-decoration: none">
+										<div class="mediumButton redButton">
+											<h:outputText value="#{msgs.myprofile}" />
+										</div>
+									</h:commandLink>
+								</td>
+								<td class="or">
+									<h:outputText value="#{msgs.o}" />
+								</td>
+								<td>
+									<h:commandLink action="#{auth.logout()}"
+										style="text-decoration: none">
+										<div class="mediumButton redButton">
+											<h:outputText value="#{msgs.logout}" />
+										</div>
+									</h:commandLink>
+								</td>
+							</tr>
+						</table>
+						
 					</h:form>
 				</h:panelGroup>
 			</div>
