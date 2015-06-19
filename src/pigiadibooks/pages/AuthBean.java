@@ -39,12 +39,12 @@ public class AuthBean implements Serializable{
 				.getExternalContext().getRequest();
 
 		request.getSession().invalidate();
-		return "index.jsf?faces-redirect=true";
+		return "/index.jsf?faces-redirect=true";
 	}
 	
 	public String invalidateSession() {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.invalidateSession();
-		return "index.jsf?faces-redirect=true";
+		return "/index.jsf?faces-redirect=true";
 	}
 }

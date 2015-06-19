@@ -143,7 +143,13 @@ public class BookDetails implements Serializable{
 		if(this.getLoggedIn()){
 			try {
 				this.ownedBooks.insertBook(this.selectedBook.getindustryID());
-				this.isOwned=true;
+				for(DataModel dm:this.ownedBooks.selectOwnBooks()){
+					OwnBookModel obm=(OwnBookModel) dm;
+					if (this.selectedBook.getindustryID().equals(obm.getIndustryID())){
+						this.isOwned=true;
+						this.mioLibro=obm;
+					}
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -182,7 +188,8 @@ public class BookDetails implements Serializable{
 	public String submitReview(){
 		try {
 			this.ownedBooks.updateBook(this.mioLibro.getIndustryID()
-					, this.mioLibro.getCondizioni(), this.mioLibro.getVoto()
+					, this.mioLibro.getCondizioni()==0?null:this.mioLibro.getCondizioni()
+					, this.mioLibro.getVoto()==0?null:this.mioLibro.getVoto()
 					, this.mioLibro.getRecensione());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

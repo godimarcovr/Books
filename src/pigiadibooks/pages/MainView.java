@@ -25,7 +25,8 @@ public class MainView implements Serializable{
 	}
 
 	public String search() {
-		if (this.searchResults.getTitle() != null)
+		if (this.searchResults.getTitle() != null 
+				&& !this.searchResults.getTitle().equals(""))
 			return "searchResults";
 		return null;
 	}
