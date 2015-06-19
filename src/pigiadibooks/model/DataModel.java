@@ -1,5 +1,7 @@
 package pigiadibooks.model;
 
-public interface DataModel {
+import java.io.Serializable;
+
+public interface DataModel extends Serializable{
 
 }

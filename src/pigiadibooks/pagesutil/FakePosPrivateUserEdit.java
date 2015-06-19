@@ -58,7 +58,7 @@ public class FakePosPrivateUserEdit {
 		DMLCode insertUser=(DMLCode) SQLCodeBuilder
 				.createInsertIntoOnAllColumns(this.ref_userstable
 						, new Object[][]{{this.user,fppum.getPassword(),fppum.getEmail()
-										,fppum.getNome(),fppum.getCognome()}});
+										,fppum.getNome(),fppum.getCognome(),fppum.getRuolo()}});
 		DMLCode insertPos=(DMLCode) SQLCodeBuilder
 				.createInsertIntoOnAllColumns(this.ref_postable
 						, new Object[][]{{this.user,fppum.getxPos(),fppum.getyPos()}});
