@@ -55,6 +55,13 @@ public class SearchByTitleBean implements Serializable{
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException | SQLException
 				| GeneralSecurityException | IOException e) {
+			if(e instanceof SQLException){
+				SQLException ex=(SQLException) e;
+				while(ex instanceof SQLException){
+					System.out.println(ex);
+					ex=ex.getNextException();
+				}
+			}
 			e.printStackTrace();
 		}
 		finally{

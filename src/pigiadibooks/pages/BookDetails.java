@@ -31,6 +31,7 @@ public class BookDetails implements Serializable{
 	
 	@ManagedProperty(value="#{auth}")
 	private AuthBean auth;
+	
 	private PublicUserModel lastBorrowRequested;
 	
 	public BookDetails() {}

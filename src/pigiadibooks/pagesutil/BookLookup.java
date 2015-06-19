@@ -34,6 +34,9 @@ public class BookLookup {
 		this.title=title;
 	}
 	
+	public BookLookup(){
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -66,7 +69,7 @@ public class BookLookup {
 				params[i][4]=bm.getCategoria();
 			}
 			SQLCode insertBooks=SQLCodeBuilder.createInsertIntoOnAllColumns("Libro",params);
-			((DMLCode)insertBooks).setIgnoreWarnings(true);
+			
 			
 			Set<String> autori=new HashSet<String>();
 			for (BookModel bm : toIns) {
@@ -79,7 +82,7 @@ public class BookLookup {
 				iAut++;
 			}
 			SQLCode insertAuthors=SQLCodeBuilder.createInsertIntoOnAllColumns("Autore", paramsAutori);
-			((DMLCode)insertAuthors).setIgnoreWarnings(true);
+			
 			
 			
 			List<String> wby_autori=new ArrayList<String>();
@@ -96,12 +99,39 @@ public class BookLookup {
 				paramsWBy[i][1]=wby_autori.get(i);
 			}
 			SQLCode insertWrittenBy=SQLCodeBuilder.createInsertIntoOnAllColumns("ScrittoDa", paramsWBy);
-			((DMLCode)insertWrittenBy).setIgnoreWarnings(true);
 			
-			insertBooks.executeQueryOnConnection(c);
-			insertAuthors.executeQueryOnConnection(c);
-			insertWrittenBy.executeQueryOnConnection(c);
+			if(insertBooks!=null){
+				((DMLCode)insertBooks).setIgnoreWarnings(true);
+				insertBooks.executeQueryOnConnection(c);
+				if(insertAuthors!=null){
+					((DMLCode)insertAuthors).setIgnoreWarnings(true);
+					insertAuthors.executeQueryOnConnection(c);
+				}
+				if(insertWrittenBy!=null){
+					((DMLCode)insertWrittenBy).setIgnoreWarnings(true);
+					insertWrittenBy.executeQueryOnConnection(c);
+				}
+			}
 		}
 		
+	}
+	
+	public BookModel getByID(String id) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+		this.strat=new BookBeanStrategy((Query) SQLCodeBuilder
+				.createSelectAllFromWhereWithParams("ScrittoDa AS SD JOIN Libro L ON SD.libro_industryid=L.industryid "
+				+ "JOIN Autore A ON A.nome=SD.autore_nome "
+						, "L.industryid=?"
+						,new Object[]{id}));
+		Set<BookModel> toRet=new HashSet<BookModel>();
+		List<DataModel> resFromDB=this.strat.getSelectedBeans(MyDriver.getInstance().getConnection());
+		for (DataModel db : resFromDB) {
+			toRet.add((BookModel) db);
+		}
+		if(toRet.size()!=1){
+			return new BookModel();
+		}
+		else{
+			return new ArrayList<BookModel>(toRet).get(0);
+		}
 	}
 }
