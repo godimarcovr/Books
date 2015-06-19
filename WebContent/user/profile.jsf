@@ -15,7 +15,54 @@
   		</ui:define>
 
 		<ui:define name="content">
-			CIAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+			<h:form>
+				<h:outputText class="mainPageSearch"
+					value="#{personal.statusMessage}" />
+				<br />
+				<table>
+					<tr>
+						<td><h:outputText class="mainPageSearch"
+								value="#{personal.myUser.username}" /></td>
+					</tr>
+					<tr>
+						<td><h:inputText class="mainPageSearch"
+								value="#{personal.myUser.email}" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText class="mainPageSearch"
+								value="#{personal.myUser.nome}" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText class="mainPageSearch"
+								value="#{personal.myUser.cognome}" /></td>
+					</tr>
+					<tr>
+						<td><h:inputText class="mainPageSearch"
+								value="#{personal.myUser.xPos}" /></td>
+					</tr>
+					<tr>
+						<td><h:inputText class="mainPageSearch"
+								value="#{personal.myUser.yPos}" /></td>
+					</tr>
+
+				</table>
+				<h:commandLink action="#{personal.edit()}">
+					<div id="bigSearchButton" class="redButton">
+						<h:outputText value="Modifica" />
+					</div>
+				</h:commandLink>
+			</h:form>
+			<h:form>
+				<h:dataTable var="B" value="#{personal.myBooks}">
+					<h:column>
+						<h:commandLink action="#{personal.goToDetail(B)}">
+							<div>
+								<h:outputText value="#{B.titolo}" />
+							</div>
+						</h:commandLink>
+					</h:column>
+				</h:dataTable>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </body>

@@ -121,7 +121,7 @@ public class RegisterBean implements Serializable{
 			} catch (Exception e) {
 				e.printStackTrace();
 				this.regFailed=true;
-				return "#";
+				return "";
 			}
 		}
 		

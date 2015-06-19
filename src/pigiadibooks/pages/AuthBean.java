@@ -47,4 +47,11 @@ public class AuthBean implements Serializable{
 				.invalidateSession();
 		return "/index.jsf?faces-redirect=true";
 	}
+	
+	public boolean isAdmin(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest) context
+				.getExternalContext().getRequest();
+		return false;
+	}
 }
