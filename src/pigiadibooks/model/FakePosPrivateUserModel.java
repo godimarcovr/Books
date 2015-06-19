@@ -1,24 +1,29 @@
 package pigiadibooks.model;
 
 public class FakePosPrivateUserModel extends PublicUserModel {
-	private String password, email;
+	private String password, email, ruolo;
 	private float xPos,yPos;
 	
-	public FakePosPrivateUserModel(String username, String nome,
-			String cognome, String password, String email, float xPos,
-			float yPos) {
+	
+	
+	public FakePosPrivateUserModel(String username, String nome, String cognome
+			,String password, String email,
+			float xPos, float yPos, String ruolo) {
 		super(username, nome, cognome);
 		this.password = password;
 		this.email = email;
+		this.ruolo = ruolo;
 		this.xPos = xPos;
 		this.yPos = yPos;
 	}
-	public FakePosPrivateUserModel() {
+
+	public FakePosPrivateUserModel(){
 		super();
 		this.password = "";
 		this.email = "";
-		this.xPos = 0.0f;
-		this.yPos = 0.0f;
+		this.ruolo = "";
+		this.xPos = 0;
+		this.yPos = 0;
 	}
 	public String getPassword() {
 		return password;
@@ -31,6 +36,12 @@ public class FakePosPrivateUserModel extends PublicUserModel {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getRuolo() {
+		return ruolo;
+	}
+	public void setRuolo(String ruolo) {
+		this.ruolo = ruolo;
 	}
 	public float getxPos() {
 		return xPos;
@@ -47,10 +58,11 @@ public class FakePosPrivateUserModel extends PublicUserModel {
 	@Override
 	public String toString() {
 		return "FakePosPrivateUserModel [password=" + password + ", email="
-				+ email + ", xPos=" + xPos + ", yPos=" + yPos
-				+ ", getUsername()=" + getUsername() + ", getNome()="
+				+ email + ", ruolo=" + ruolo + ", xPos=" + xPos + ", yPos="
+				+ yPos + ", getUsername()=" + getUsername() + ", getNome()="
 				+ getNome() + ", getCognome()=" + getCognome()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", toString()=" + super.toString() + ", hashCode()="
+				+ hashCode() + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -59,6 +71,7 @@ public class FakePosPrivateUserModel extends PublicUserModel {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((ruolo == null) ? 0 : ruolo.hashCode());
 		result = prime * result + Float.floatToIntBits(xPos);
 		result = prime * result + Float.floatToIntBits(yPos);
 		return result;
@@ -82,12 +95,19 @@ public class FakePosPrivateUserModel extends PublicUserModel {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (ruolo == null) {
+			if (other.ruolo != null)
+				return false;
+		} else if (!ruolo.equals(other.ruolo))
+			return false;
 		if (Float.floatToIntBits(xPos) != Float.floatToIntBits(other.xPos))
 			return false;
 		if (Float.floatToIntBits(yPos) != Float.floatToIntBits(other.yPos))
 			return false;
 		return true;
 	}
+	
+	
 	
 	
 }

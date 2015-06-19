@@ -24,6 +24,7 @@ public class SelfPrivateUserStrategy extends DataBeanGetStrategy {
 	private String ref_password;
 	private String ref_x;
 	private String ref_y;
+	private String ref_role;
 
 	public SelfPrivateUserStrategy(String username) {
 		this.setDefaults();
@@ -46,6 +47,7 @@ public class SelfPrivateUserStrategy extends DataBeanGetStrategy {
 		this.ref_y="y";
 		this.ref_email="email";
 		this.ref_password="password";
+		this.ref_role="ruolo";
 	}
 	
 	@Override
@@ -63,6 +65,7 @@ public class SelfPrivateUserStrategy extends DataBeanGetStrategy {
 		pum.setPassword(rs.getString(this.ref_password));
 		pum.setxPos(rs.getFloat(this.ref_x));
 		pum.setyPos(rs.getFloat(this.ref_y));
+		pum.setRuolo(rs.getString(this.ref_role));
 		return pum;
 	}
 

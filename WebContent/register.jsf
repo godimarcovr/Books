@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+<title>IGNORED</title>
+</head>
+<body>
+	<ui:composition template="/templates/layout.jsf">
+		<ui:define name="windowTitle">
+    		#{msgs.base_title} - #{msgs.index_title}
+  		</ui:define>
+
+		<ui:define name="content">
+			<h:panelGroup layout="block" rendered="#{register.regFailed}">
+					<p>
+						Registrazione fallita!
+					</p>
+				</h:panelGroup>
+			<h:form>
+				<h:inputText class="mainPageSearch" value="#{register.username}" />
+				<h:inputSecret class="mainPageSearch" value="#{register.password}" />
+				<h:inputText class="mainPageSearch" value="#{register.email}" />
+				<h:inputText class="mainPageSearch" value="#{register.nome}" />
+				<h:inputText class="mainPageSearch" value="#{register.cognome}" />
+				<h:inputText class="mainPageSearch" value="#{register.x}" />
+				<h:inputText class="mainPageSearch" value="#{register.y}" />
+				
+				<h:commandLink action="#{register.register()}">
+					<div id="bigSearchButton" class="redButton">
+						<h:outputText value="Registrati!" />
+					</div>
+				</h:commandLink>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
