@@ -15,14 +15,31 @@
   		</ui:define>
 
 		<ui:define name="content">
+			<h:outputText value="Ultimo login effettuato sul sito:" />
+			<br />
+			<h:outputText value="Da utente:" />
+			<br />
+			<h:outputText value="#{stat.lastLogin.user}" />
+			<br />
+			<h:outputText value="Da provincia:" />
+			<br />
+			<h:outputText value="#{stat.lastLogin.provincia}" />
+			<br />
+			<h:outputText value="Il:" />
+			<br />
+			<h:outputText value="#{stat.lastLogin.logintime}" />
+			<br />
+			<br />
+
 			<h:form>
-				<h:inputText class="mainPageSearch" value="#{mainView.searchResults.title}" />
-				
-				<h:commandLink action="#{mainView.search()}">
-					<div id="bigSearchButton" class="redButton">
-						<h:outputText value="#{msgs.searchButton_label}" />
-					</div>
-				</h:commandLink>
+				<h:dataTable var="S" value="#{stat.top10Search}">
+					<h:column>
+						<h:outputText value="#{S.key}" />
+					</h:column>
+					<h:column>
+						<h:outputText value="#{S.count}" />
+					</h:column>
+				</h:dataTable>
 			</h:form>
 		</ui:define>
 	</ui:composition>

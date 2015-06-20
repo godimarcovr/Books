@@ -1,5 +1,6 @@
 package pigiadibooks.pagesutil;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import pigiadibooks.model.BookModel;
 import pigiadibooks.model.DataModel;
 import pigiadibooks.model.OwnBookModel;
 
-public class OwnedBooks {
+public class OwnedBooks implements Serializable{
 	
 	private String user;
 	private String into;

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import pigiadibooks.dbhandler.MyDriver;
 import pigiadibooks.dbhandler.Query;
 import pigiadibooks.dbhandler.SQLCodeBuilder;
-import pigiadibooks.pagesutil.LoginLogger;
+import pigiadibooks.pagesutil.LoginLoggerStat;
 
 public class MyLoginModule implements LoginModule {
 
@@ -76,7 +76,7 @@ public class MyLoginModule implements LoginModule {
 			if (isValidUser()){
 				loginSucceeded = true;
 				//Loggo il login
-				LoginLogger ll=new LoginLogger();
+				LoginLoggerStat ll=new LoginLoggerStat();
 				try {
 					ll.insertLoginWithRandomProvincia(this.username);
 				} catch (Exception e) {

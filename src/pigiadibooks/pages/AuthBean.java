@@ -52,6 +52,6 @@ public class AuthBean implements Serializable{
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest) context
 				.getExternalContext().getRequest();
-		return false;
+		return request.isUserInRole("admin");
 	}
 }

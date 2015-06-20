@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import org.junit.Test;
 
 import pigiadibooks.model.LoginRecordModel;
-import pigiadibooks.pagesutil.LoginLogger;
+import pigiadibooks.pagesutil.LoginLoggerStat;
 
 public class LoginLoggerTest {
 
 	@Test
 	public void test() {
-		LoginLogger ll=new LoginLogger();
+		LoginLoggerStat ll=new LoginLoggerStat();
 		try {
 			ll.insertLogin("god", "VR");
 		} catch (InstantiationException | IllegalAccessException

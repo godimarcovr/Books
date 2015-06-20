@@ -10,12 +10,12 @@ import pigiadibooks.dbhandler.MyDriver;
 import pigiadibooks.model.DataModel;
 import pigiadibooks.model.LoginRecordModel;
 
-public class LoginLogger {
+public class LoginLoggerStat {
 	
 	private DataBeanGetStrategy lrstrat;
 	private String ref_logintable;
 
-	public LoginLogger(){
+	public LoginLoggerStat(){
 		this.setDefaults();
 		this.lrstrat=new LoginRecordStrategy();
 	}

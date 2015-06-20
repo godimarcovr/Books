@@ -35,66 +35,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- 
-			<div class="clear" />
-			<div id="bookDetails_content_for_logged">
-				<div id="content_for_owner">
-					<table style="width: 100%; text-align: left;">
-						<tr>
-							<td>
-								Condizioni
-							</td>
-							<td>
-								<h:selectOneMenu value="">
-								   	<f:selectItem itemValue="Cream Latte" itemLabel="Coffee3 - Cream Latte" />
-								   	<f:selectItem itemValue="Extreme Mocha" itemLabel="Coffee3 - Extreme Mocha" />
-								   	<f:selectItem itemValue="Buena Vista" itemLabel="Coffee3 - Buena Vista" />
-								</h:selectOneMenu>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								Voto
-							</td>
-							<td>
-								<h:selectOneMenu value="">
-								   	<f:selectItem itemValue="Cream Latte" itemLabel="Coffee3 - Cream Latte" />
-								   	<f:selectItem itemValue="Extreme Mocha" itemLabel="Coffee3 - Extreme Mocha" />
-								   	<f:selectItem itemValue="Buena Vista" itemLabel="Coffee3 - Buena Vista" />
-								</h:selectOneMenu>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								Descrizione
-							</td>
-							<td>
-							
-							</td>
-						</tr>
-					</table>
-				
-					<h:selectOneMenu value="">
-					   	<f:selectItem itemValue="Cream Latte" itemLabel="Coffee3 - Cream Latte" />
-					   	<f:selectItem itemValue="Extreme Mocha" itemLabel="Coffee3 - Extreme Mocha" />
-					   	<f:selectItem itemValue="Buena Vista" itemLabel="Coffee3 - Buena Vista" />
-					</h:selectOneMenu>
-				</div>
-				<div id="content_for_non_owner">
-					<div class="redButton holdButton">
-						#{msgs.HoldingButton_label}
-					</div>
-					<div class="clear" />
-					<div id="BookOwners">
-						<strong>#{msgs.bookOwnersTable_label}</strong>
-						<div id="BookOwnersTable">
-							<ui:repeat var="" value="">
-	
-							</ui:repeat>
-						</div>
-					</div>
-				</div>
-			</div> -->
 			<h:panelGroup rendered="#{bookDetails.loggedIn}">
 				<h:panelGroup rendered="#{bookDetails.owned}">
 					<h:form>
@@ -107,14 +47,12 @@
 					<div class="contentBlock">
 						<h:form>
 							<table cellpadding="5px;" style="width: 100%; text-align: left;">
-							  	<col width="20%" />
-	  							<col width="80%" />
+								<col width="20%" />
+								<col width="80%" />
 								<tr>
-									<td class="inputTableLabelColumn">
-										<h:outputText value="#{msgs.voto_label}" />
-									</td>
-									<td>
-										<h:selectOneMenu value="#{bookDetails.mioLibro.voto}">
+									<td class="inputTableLabelColumn"><h:outputText
+											value="#{msgs.voto_label}" /></td>
+									<td><h:selectOneMenu value="#{bookDetails.mioLibro.voto}">
 											<f:selectItem itemValue="#{0}" itemLabel="-- voto --" />
 											<f:selectItem itemValue="#{1}" itemLabel="1" />
 											<f:selectItem itemValue="#{2}" itemLabel="2" />
@@ -126,31 +64,26 @@
 											<f:selectItem itemValue="#{8}" itemLabel="8" />
 											<f:selectItem itemValue="#{9}" itemLabel="9" />
 											<f:selectItem itemValue="#{10}" itemLabel="10" />
-										</h:selectOneMenu>
-									</td>
+										</h:selectOneMenu></td>
 								</tr>
 								<tr>
-									<td class="inputTableLabelColumn">
-										<h:outputText value="#{msgs.condizioni_label}" />
-									</td>
-									<td>
-										<h:selectOneMenu value="#{bookDetails.mioLibro.condizioni}">
+									<td class="inputTableLabelColumn"><h:outputText
+											value="#{msgs.condizioni_label}" /></td>
+									<td><h:selectOneMenu
+											value="#{bookDetails.mioLibro.condizioni}">
 											<f:selectItem itemValue="#{0}" itemLabel="-- condizioni --" />
 											<f:selectItem itemValue="#{1}" itemLabel="1" />
 											<f:selectItem itemValue="#{2}" itemLabel="2" />
 											<f:selectItem itemValue="#{3}" itemLabel="3" />
 											<f:selectItem itemValue="#{4}" itemLabel="4" />
 											<f:selectItem itemValue="#{5}" itemLabel="5" />
-										</h:selectOneMenu>
-									</td>
+										</h:selectOneMenu></td>
 								</tr>
 								<tr>
-									<td class="inputTableLabelColumn">
-										<h:outputText value="#{msgs.descrizione_label}" />
-									</td>
-									<td>
-										<h:inputTextarea rows="5" class="descIT" value="#{bookDetails.mioLibro.recensione}" />
-									</td>
+									<td class="inputTableLabelColumn"><h:outputText
+											value="#{msgs.descrizione_label}" /></td>
+									<td><h:inputTextarea rows="5" class="descIT"
+											value="#{bookDetails.mioLibro.recensione}" /></td>
 								</tr>
 							</table>
 							<h:commandLink action="#{bookDetails.submitReview()}">
@@ -174,18 +107,24 @@
 							<table style="width: 100%" cellpadding="5px">
 								<ui:repeat var="O" value="#{bookDetails.nearbyOwners}">
 									<tr>
+											<div>
+												<h:outputText value="#{B.titolo}" />
+											</div>
 										<td class="bookUserTableCell">
-											<strong>#{O.username}</strong>
+											<strong>
+												<h:commandLink action="#{bookDetails.goToProfile(O.username)}">
+													#{O.username}
+												</h:commandLink>
+											</strong>
 										</td>
 										<td class="bookUserTableCell">#{O.nome}</td>
 										<td class="bookUserTableCell">#{O.cognome}</td>
-										<td class="bookUserTableCell">
-											<h:commandLink action="#{bookDetails.borrow(O)}">
+										<td class="bookUserTableCell"><h:commandLink
+												action="#{bookDetails.borrow(O)}">
 												<div class="mediumButton redButton">
 													<h:outputText value="#{bookDetails.isBorrowed(O)}" />
 												</div>
-											</h:commandLink>
-										</td>
+											</h:commandLink></td>
 									</tr>
 								</ui:repeat>
 							</table>

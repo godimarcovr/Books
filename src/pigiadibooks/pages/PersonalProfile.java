@@ -28,6 +28,9 @@ public class PersonalProfile implements Serializable {
 	@ManagedProperty(value="#{bookDetails}")
     private BookDetails bookDetails;
 	
+	@ManagedProperty(value="#{other}")
+    private OtherBean other;
+	
 	private FakePosPrivateUserModel myUser;
 	private String username;
 	
@@ -135,18 +138,25 @@ public class PersonalProfile implements Serializable {
 	}
 
 	public String goToDetail(OwnBookModel own){
-		System.out.println("osd");
 		BookLookup bl=new BookLookup();
-		System.out.println("asd");
 		try {
 			BookModel bm=bl.getByID(own.getIndustryID());
 			this.bookDetails.setSelectedBook(bm);
-			System.out.println(bm);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "";
 		}
 		return "/bookDetails.jsf?faces-redirect=true";
 	}
+
+	public OtherBean getOther() {
+		return other;
+	}
+
+	public void setOther(OtherBean other) {
+		this.other = other;
+	}
+	
+	
 
 }

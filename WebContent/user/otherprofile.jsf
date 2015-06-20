@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+<title>IGNORED</title>
+</head>
+<body>
+	<ui:composition template="/templates/layout.jsf">
+		<ui:define name="windowTitle">
+    		#{msgs.base_title} - #{msgs.index_title}
+  		</ui:define>
+
+		<ui:define name="content">
+			<h:outputText class="mainPageSearch"
+				value="#{personal.statusMessage}" />
+			<br />
+			<table>
+				<tr>
+					<td><h:outputText class="mainPageSearch"
+							value="#{other.user.username}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText class="mainPageSearch"
+							value="#{other.user.nome}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText class="mainPageSearch"
+							value="#{other.user.cognome}" /></td>
+				</tr>
+
+			</table>
+			<h:form>
+				<h:dataTable var="B" value="#{other.books}">
+					<h:column>
+						<h:commandLink action="#{other.goToDetail(B)}">
+							<div>
+								<h:outputText value="#{B.titolo}" />
+							</div>
+						</h:commandLink>
+					</h:column>
+					<h:column>
+						<h:outputText value="#{B.recensione}" />
+					</h:column>
+					<h:column>
+						<h:outputText value="#{B.condizioni}" />
+					</h:column>
+					<h:column>
+						<h:outputText value="#{B.voto}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

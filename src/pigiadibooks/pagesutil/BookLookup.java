@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -44,7 +45,7 @@ public class BookLookup {
 	//TODO gestire il controllo in parallelo anche su Google Books oltre che sul db
 	//magari metterlo nel costruttore che fa una thread che va a cercare.
 	public List<BookModel>  lookupByTitle() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, GeneralSecurityException, IOException{
-		Set<BookModel> toRet=new HashSet<BookModel>();
+		Set<BookModel> toRet=new LinkedHashSet<BookModel>();
 		List<DataModel> resFromDB=this.strat.getSelectedBeans(MyDriver.getInstance().getConnection());
 		for (DataModel db : resFromDB) {
 			toRet.add((BookModel) db);
@@ -53,6 +54,10 @@ public class BookLookup {
 		List<BookModel> fromGoogleBooks=ind.getBooksByTitle(this.title);
 		this.insertBooks(fromGoogleBooks, MyDriver.getInstance().getConnection());
 		toRet.addAll(fromGoogleBooks);
+		
+		//per statistiche ricerche libri
+		ResearchLoggerStat rl=new ResearchLoggerStat();
+		rl.insertSearch(this.title);
 		
 		return new ArrayList<BookModel>(toRet);
 	}

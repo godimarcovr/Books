@@ -8,14 +8,14 @@ import java.util.List;
 import org.junit.Test;
 
 import pigiadibooks.model.BookSearchModel;
-import pigiadibooks.pagesutil.ResearchLogger;
+import pigiadibooks.pagesutil.ResearchLoggerStat;
 
 public class ResearchLoggerTest {
 
 	@Test
 	public void test() {
 		//INSERISCO RICERCHE
-		ResearchLogger rl=new ResearchLogger();
+		ResearchLoggerStat rl=new ResearchLoggerStat();
 		try {
 			rl.insertSearch("banana");
 			rl.insertSearch("banana");

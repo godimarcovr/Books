@@ -13,14 +13,14 @@ import pigiadibooks.dbhandler.SQLCodeBuilder;
 import pigiadibooks.model.BookSearchModel;
 import pigiadibooks.model.DataModel;
 
-public class ResearchLogger {
+public class ResearchLoggerStat {
 	
-	SQLCode insertSearch, statTopSearches;
+	private SQLCode insertSearch, statTopSearches;
 	private String ref_searches;
 	private String ref_searchkey;
 	private SearchesStrategy ss;
 	
-	public ResearchLogger(){
+	public ResearchLoggerStat(){
 		this.setDefaults();
 		this.ss=new SearchesStrategy();
 	}

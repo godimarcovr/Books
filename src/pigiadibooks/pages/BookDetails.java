@@ -32,6 +32,9 @@ public class BookDetails implements Serializable{
 	@ManagedProperty(value="#{auth}")
 	private AuthBean auth;
 	
+	//@ManagedProperty(value="#{other}")
+	private OtherBean other;
+	
 	private PublicUserModel lastBorrowRequested;
 	
 	public BookDetails() {}
@@ -196,7 +199,7 @@ public class BookDetails implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "bookDetails";
+		return "/bookDetails.jsf?faces-redirect=true";
 	}
 	
 	public String isBorrowed(PublicUserModel pum){
@@ -210,7 +213,27 @@ public class BookDetails implements Serializable{
 	
 	public String borrow(PublicUserModel pum){
 		this.lastBorrowRequested=pum;
-		return "bookDetails";
+		return "/bookDetails.jsf?faces-redirect=true";
 	}
+
+	public String goToProfile(String username){
+		if(username!=null && !username.equals("")){
+			this.other.setUsername(username);
+			return "/user/otherprofile.jsf?faces-redirect=true";
+		}
+		else{
+			return "";
+		}
+	}
+
+	public OtherBean getOther() {
+		return other;
+	}
+
+	public void setOther(OtherBean other) {
+		this.other = other;
+	}
+	
+	
 	
 }
