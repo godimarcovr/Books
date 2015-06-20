@@ -103,6 +103,7 @@
 						</h:commandLink>
 					</h:form>
 					<div class="contentBlock">
+						<p><strong><h:outputText value="#{msgs.bookowners_label }" /></strong></p>
 						<h:form>
 							<table style="width: 100%" cellpadding="5px">
 								<ui:repeat var="O" value="#{bookDetails.nearbyOwners}">
