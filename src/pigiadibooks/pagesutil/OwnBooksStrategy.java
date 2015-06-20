@@ -2,11 +2,16 @@ package pigiadibooks.pagesutil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import pigiadibooks.dbhandler.DataBeanGetStrategy;
 import pigiadibooks.dbhandler.Query;
 import pigiadibooks.dbhandler.SQLCodeBuilder;
+import pigiadibooks.model.BookModel;
 import pigiadibooks.model.DataModel;
 import pigiadibooks.model.OwnBookModel;
 
@@ -64,7 +69,9 @@ public class OwnBooksStrategy extends DataBeanGetStrategy {
 
 	@Override
 	protected List<DataModel> lastOpBeforeReturning(List<DataModel> list) {
-		return list;
+		Set<DataModel> toRet=new LinkedHashSet<DataModel>();
+		toRet.addAll(list);
+		return new ArrayList<DataModel>(toRet);
 	}
 
 	@Override

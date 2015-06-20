@@ -1,5 +1,6 @@
 package pigiadibooks.dbhandler;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
  * quando voglio
  *
  */
-public abstract class SQLCode {
+public abstract class SQLCode implements Serializable{
 	protected String code;
 	
 	/**
