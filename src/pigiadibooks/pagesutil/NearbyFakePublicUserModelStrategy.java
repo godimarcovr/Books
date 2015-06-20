@@ -55,6 +55,34 @@ public class NearbyFakePublicUserModelStrategy extends DataBeanGetStrategy {
 		this.buildQuery(bookID);
 	}
 	
+	public NearbyFakePublicUserModelStrategy(String username,String toSearch, float maxRange) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException{
+		this.setDefaults();
+		Query getFakeCoords=(Query) SQLCodeBuilder
+				.createSelectAllFromWhere("PosGeograficaFake PGF"
+						, "PGF."+this.ref_posuser+"='"+username+"' ");
+		Connection c=MyDriver.getInstance().getConnection();
+		ResultSet rs=getFakeCoords.executeQueryOnConnection(c);
+		if(rs.next()){
+			this.posX=rs.getFloat(this.ref_x);
+			this.posY=rs.getFloat(this.ref_y);
+		}else{
+			this.posX=0.0f;
+			this.posY=0.0f;
+		}
+		rs.getStatement().close();
+		rs.close();
+		c.close();
+		
+		String pitagora=" sqrt(pow(PGF."+this.ref_x+"-?,2)+pow(PGF."+this.ref_y+"-?,2))";
+		
+		this.code=(Query) SQLCodeBuilder.createSelectAllFromWhereOrderByWithParams("Users U JOIN PosGeograficaFake PGF ON "
+					+ "U."+this.ref_username+"=PGF."+this.ref_posuser
+					, "U."+this.ref_username+" ILIKE ? AND "+pitagora+" <?"
+					, " sqrt(pow(PGF."+this.ref_x+"-?,2)+pow(PGF."+this.ref_y+"-?,2))"
+					, new Object[]{"%"+toSearch+"%",this.posX,this.posY,maxRange
+										,this.posX,this.posY});
+	}
+	
 	private void setDefaults() {
 		this.ref_posuser="user_username";
 		this.ref_owneruser="user_username";

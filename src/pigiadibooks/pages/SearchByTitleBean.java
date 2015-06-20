@@ -76,6 +76,11 @@ public class SearchByTitleBean implements Serializable{
 
 	public void setCache(List<BookModel> cache) {
 		this.cache = cache;
+		for (BookModel bookModel : cache) {
+			if(bookModel.getImgurl()== null || bookModel.getImgurl().isEmpty()){
+				bookModel.setImgurl("http://www.kitabyzer.com/img/default_cover.jpg");
+			}
+		}
 	}
 	
 	public BookDetails getBookDetails() {
