@@ -15,43 +15,89 @@
   		</ui:define>
 
 		<ui:define name="content">
-			<h:outputText class="mainPageSearch"
-				value="#{personal.statusMessage}" />
-			<br />
-			<table>
-				<tr>
-					<td><h:outputText class="mainPageSearch"
-							value="#{other.user.username}" /></td>
-				</tr>
-				<tr>
-					<td><h:outputText class="mainPageSearch"
-							value="#{other.user.nome}" /></td>
-				</tr>
-				<tr>
-					<td><h:outputText class="mainPageSearch"
-							value="#{other.user.cognome}" /></td>
-				</tr>
+			<div class="wrappingContentBlock">
+				
+				<p><strong><h:outputText value="#{msgs.userDetail}" /></strong></p>
+			
+				<table style="width: 100%">
+					<tr>
+						<td class="inputTableLabelColumn columnCellHeight">
+							<h:outputText value="#{msgs.username_profile_label}" />
+						</td>
+						<td class="columnDetailCell">
+							<strong><h:outputText value="#{other.user.username}" /></strong>
+						</td>
+					</tr>
+					<tr>
+						<td class="inputTableLabelColumn columnCellHeight">
+							<h:outputText value="#{msgs.nome_profile_label}" />
+						</td>
+						<td class="columnDetailCell">
+							<strong><h:outputText value="#{other.user.nome}" /></strong>
+						</td>
+					</tr>
+					<tr>
+						<td class="inputTableLabelColumn columnCellHeight">
+							<h:outputText value="#{msgs.cognome_profile_label}" />
+						</td>
+						<td class="columnDetailCell">
+							<strong><h:outputText value="#{other.user.cognome}" /></strong>
+						</td>
+					</tr>
 
-			</table>
+				</table>
+			</div>
+			
 			<h:form>
-				<h:dataTable var="B" value="#{other.books}">
-					<h:column>
-						<h:commandLink action="#{other.goToDetail(B)}">
-							<div>
-								<h:outputText value="#{B.titolo}" />
+				<div class="contentBlock">
+					<div class="block">
+						<div class="otherUserBookCell">
+							<div class="otherUserBookFirstRow">
+								<div class="otherUserBookTitolo">
+									<span class="descriptionStrong">Titolo</span>
+								</div>
+								<div class="otherUserBookVoto">
+									<span class="descriptionStrong">Voto</span>
+								</div>
+								<div class="otherUserBookCondizione">
+									<span class="descriptionStrong">Condizione</span>
+								</div>
 							</div>
-						</h:commandLink>
-					</h:column>
-					<h:column>
-						<h:outputText value="#{B.recensione}" />
-					</h:column>
-					<h:column>
-						<h:outputText value="#{B.condizioni}" />
-					</h:column>
-					<h:column>
-						<h:outputText value="#{B.voto}" />
-					</h:column>
-				</h:dataTable>
+						</div>
+					</div>
+						<ui:repeat var="B" value="#{other.books}">
+							<div class="block">
+								<div class="otherUserBookCell">
+									<div class="otherUserBookFirstRow">
+										<div class="otherUserBookTitolo titleStrongLink">
+											<h:commandLink  action="#{other.goToDetail(B)}">
+												<span class="titleStrong">
+													<h:outputText value="#{B.titolo}" />
+												</span>
+											</h:commandLink>
+										</div>
+										<div class="otherUserBookVoto">
+											<strong><h:outputText value="#{B.voto}" /></strong>
+										</div>
+										<div class="otherUserBookCondizione">
+											<strong><h:outputText value="#{B.condizioni}" /></strong>
+										</div>
+									</div>
+									<div class="otherUserBookSecondRow">
+										<div class="otherUserBookDescrizione_Label">
+											<span class="descriptionStrong">
+												<h:outputText value="#{msgs.otherprofile_description}" />
+											</span>
+										</div >
+										<div class="otherUserBookDescrizione">
+											<h:outputText value="#{B.recensione}" />
+										</div>
+									</div>
+									<div class="rowSeparator" />
+								</div>
+							</div>
+						</ui:repeat>
+					</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>

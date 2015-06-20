@@ -15,84 +15,124 @@
   		</ui:define>
 
 		<ui:define name="content">
-			<h:form>
-				<h:inputText class="mainPageSearch" value="#{personal.userKey}" />
-				<h:inputText class="mainPageSearch" value="#{personal.range}" />
-				<h:commandLink action="#{personal.searchUser()}">
-					<div class="bigButton redButton">
-						<h:outputText value="#{msgs.searchButton_label}" />
-					</div>
-				</h:commandLink>
-			</h:form>
-			<h:form>
-				<h:outputText value="#{personal.statusMessage}" />
-				<div class="clear" />
-				<div class="wrappingContentBlock">
-					<table >
-						<tr>
-							<td class="inputTableLabelColumn columnCellHeight">
-								<h:outputText value="#{msgs.username_profile_label}" />
-							</td>
-							<td class="columnDetailCell">
-								<strong><h:outputText value="#{personal.myUser.username}" /></strong>
-							</td>
-						</tr>
-						<tr>
-							<td class="inputTableLabelColumn columnCellHeight">
-								<h:outputText value="#{msgs.email_profile_label}" />
-							</td>
-							<td>
-								<h:inputText class="mainPageSearch" value="#{personal.myUser.email}" />
-							</td>
-						</tr>
-						<tr>
-							<td class="inputTableLabelColumn columnCellHeight">
-								<h:outputText value="#{msgs.nome_profile_label}" />
-							</td>
-							<td class="columnDetailCell">
-								<strong><h:outputText value="#{personal.myUser.nome}" /></strong>
-							</td>
-						</tr>
-						<tr>
-							<td class="inputTableLabelColumn columnCellHeight">
-								<h:outputText value="#{msgs.cognome_profile_label}" />
-							</td>
-							<td class="columnDetailCell">
-								<strong><h:outputText value="#{personal.myUser.cognome}" /></strong>
-							</td>
-						</tr>
-						<tr>
-							<td class="inputTableLabelColumn columnCellHeight">
-								<h:outputText value="#{msgs.latitude_profile_label}" />
-							</td>
-							<td>
-								<h:inputText class="mainPageSearch" value="#{personal.myUser.xPos}" />
-							</td>
-						</tr>
-						<tr>
-							<td class="inputTableLabelColumn columnCellHeight">
-								<h:outputText value="#{msgs.longitude_profile_label}" />
-							</td>
-							<td><h:inputText class="mainPageSearch" value="#{personal.myUser.yPos}" /></td>
-						</tr>
-	
-					</table>
-					<h:commandLink action="#{personal.edit()}">
-						<div class="mediumButton redButton">
-							<h:outputText value="Modifica" />
+			<div id="firstProfilePageBlock">
+				<div id="leftProfilePageBlock">
+					<h:form>
+						<h:outputText value="#{personal.statusMessage}" />
+						<div class="clear" />
+						<div class="contentBlock">
+							
+							<p><strong><h:outputText value="#{msgs.userDetail}" /></strong></p>
+						
+							<table style="width: 100%">
+								<tr>
+									<td class="inputTableLabelColumn columnCellHeight">
+										<h:outputText value="#{msgs.username_profile_label}" />
+									</td>
+									<td class="columnDetailCell">
+										<strong><h:outputText value="#{personal.myUser.username}" /></strong>
+									</td>
+								</tr>
+								<tr>
+									<td class="inputTableLabelColumn columnCellHeight">
+										<h:outputText value="#{msgs.email_profile_label}" />
+									</td>
+									<td>
+										<h:inputText class="mainPageSearch leftSearchBar" value="#{personal.myUser.email}" />
+									</td>
+								</tr>
+								<tr>
+									<td class="inputTableLabelColumn columnCellHeight">
+										<h:outputText value="#{msgs.nome_profile_label}" />
+									</td>
+									<td class="columnDetailCell">
+										<strong><h:outputText value="#{personal.myUser.nome}" /></strong>
+									</td>
+								</tr>
+								<tr>
+									<td class="inputTableLabelColumn columnCellHeight">
+										<h:outputText value="#{msgs.cognome_profile_label}" />
+									</td>
+									<td class="columnDetailCell">
+										<strong><h:outputText value="#{personal.myUser.cognome}" /></strong>
+									</td>
+								</tr>
+								<tr>
+									<td class="inputTableLabelColumn columnCellHeight">
+										<h:outputText value="#{msgs.latitude_profile_label}" />
+									</td>
+									<td>
+										<h:inputText class="mainPageSearch leftSearchBar" value="#{personal.myUser.xPos}" />
+									</td>
+								</tr>
+								<tr>
+									<td class="inputTableLabelColumn columnCellHeight">
+										<h:outputText value="#{msgs.longitude_profile_label}" />
+									</td>
+									<td><h:inputText class="mainPageSearch leftSearchBar" value="#{personal.myUser.yPos}" /></td>
+								</tr>
+			
+							</table>
+							<h:commandLink action="#{personal.edit()}">
+								<div class="mediumButton redButton">
+									<h:outputText value="Modifica" />
+								</div>
+							</h:commandLink>
+							<div class="clear" />
+							<h:commandLink class="resetLink" action="#{personal.resetFields()}">
+								<h:outputText value="Reset" />
+							</h:commandLink>
 						</div>
-					</h:commandLink>
-					<div class="clear" />
-					<h:commandLink class="resetLink" action="#{personal.resetFields()}">
-						<h:outputText value="Reset" />
-					</h:commandLink>
+					</h:form>
 				</div>
-			</h:form>
+				<div id="rightProfilePageBlock">
+					<div class="contentBlock">
+						<p><strong><h:outputText value="#{msgs.usersSearch}" /></strong></p>
+						
+						<h:form>
+							<table style="width:100%">
+								<tr>
+									<td class="inputTableLabelColumn">
+										<h:outputText value="#{msgs.usernameSearch_label}" />
+									</td>
+									<td>
+										<h:inputText class="mainPageSearch leftSearchBar" value="#{personal.userKey}" />
+									</td>
+								</tr>
+								<tr>
+									<td class="inputTableLabelColumn">
+										<h:outputText value="#{msgs.rangeSearch_label}" />
+									</td>
+									<td>
+										<h:inputText class="mainPageSearch leftSearchBar" value="#{personal.range}"  />
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<h:commandLink action="#{personal.searchUser()}">
+											<div class="mediumButton redButton">
+												<h:outputText value="#{msgs.searchButton_label}" />
+											</div>
+										</h:commandLink>
+									</td>
+								</tr>
+								
+							</table>
+							
+							
+							
+						</h:form>
+					</div>
+				</div>
+			</div>
+			
+			
+			
 			<h:form>
 				<div class="contentBlock">
 					<div id="ownedBooks">
 						<div id="ownedBooksLabel">
-							<strong><h:outputText value="#{msgs.ownedBooksLabel}" /></strong>
+							<p><strong><h:outputText value="#{msgs.ownedBooksLabel}" /></strong></p>
 						</div>
 						<div id="ownedBooksList">
 							<ui:repeat var="B" value="#{personal.myBooks}">

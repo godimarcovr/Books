@@ -9,37 +9,67 @@
 <title>IGNORED</title>
 </head>
 <body>
-	<ui:composition template="/templates/main_layout.jsf">
+	<ui:composition template="/templates/layout.jsf">
 		<ui:define name="windowTitle">
     		#{msgs.base_title} - #{msgs.index_title}
   		</ui:define>
 
 		<ui:define name="content">
-			<h:outputText value="Ultimo login effettuato sul sito:" />
-			<br />
-			<h:outputText value="Da utente:" />
-			<br />
-			<h:outputText value="#{stat.lastLogin.user}" />
-			<br />
-			<h:outputText value="Da provincia:" />
-			<br />
-			<h:outputText value="#{stat.lastLogin.provincia}" />
-			<br />
-			<h:outputText value="Il:" />
-			<br />
-			<h:outputText value="#{stat.lastLogin.logintime}" />
-			<br />
-			<br />
-
+			<div class="wrappingContentBlock">
+				<table>
+					<tr>
+						<td colspan="2">
+							<p><strong>
+								<h:outputText value="Ultimo login effettuato sul sito:" />
+							</strong></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="inputTableLabelColumn">
+							<h:outputText value="Da utente:" />
+						</td>
+						<td class="columnDetailCell">
+							<h:outputText value="#{stat.lastLogin.user}" />
+						</td>
+					</tr>
+					<tr>
+						<td class="inputTableLabelColumn">
+							<h:outputText value="Da provincia:" />
+						</td>
+						<td class="columnDetailCell">
+							<h:outputText value="#{stat.lastLogin.provincia}" />
+						</td>
+					</tr>
+					<tr>
+						<td class="inputTableLabelColumn">
+							<h:outputText value="Il:" />
+						</td>
+						<td class="columnDetailCell">
+							<h:outputText value="#{stat.lastLogin.logintime}" />
+						</td>
+					</tr>
+				</table>
+			</div>
 			<h:form>
-				<h:dataTable var="S" value="#{stat.top10Search}">
-					<h:column>
-						<h:outputText value="#{S.key}" />
-					</h:column>
-					<h:column>
-						<h:outputText value="#{S.count}" />
-					</h:column>
-				</h:dataTable>
+				<div class="wrappingContentBlock">
+					<table>
+						<tr>
+							<td colspan="2">
+								<p><strong>#{msgs.topResearch}</strong></p>
+							</td>
+						</tr>
+						<ui:repeat var="S" value="#{stat.top10Search}">
+							<tr>
+								<td class="inputTableLabelColumn">
+									<h:outputText value="#{S.key}" />
+								</td>
+								<td class="columnDetailCell">
+									<h:outputText value="#{S.count}" />
+								</td>
+							</tr>
+						</ui:repeat>
+					</table>
+				</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>

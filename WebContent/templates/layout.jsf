@@ -77,6 +77,18 @@
 									</h:commandLink>
 								</td>
 							</tr>
+							<tr>
+								<td colspan="4">
+									<h:panelGroup rendered="#{auth.isAdmin()}">
+										<h:commandLink action="/admin/administration.jsf?faces-redirect=true"
+											style="text-decoration: none">
+											<div id="admninistrationButton" class="mediumButton redButton">
+												<h:outputText value="#{msgs.administrationButton_label}" />
+											</div>
+										</h:commandLink>
+									</h:panelGroup>
+								</td>
+							</tr>
 						</table>
 						
 					</h:form>

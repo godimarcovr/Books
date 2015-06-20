@@ -560,6 +560,10 @@ ul.style4 .first {
 	margin: auto;
 }
 
+#admninistrationButton {
+	float:right;
+}
+
 /************** SEARCH PAGE */
 
 .bigButton {
@@ -788,6 +792,8 @@ ul.style4 .first {
 	vertical-align: middle;
 }
 
+
+
 .columnDetailCell {
 	text-align: left;
 	padding-left: 22px;
@@ -825,4 +831,114 @@ ul.style4 .first {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	text-align: left;
+}
+
+#firstProfilePageBlock {
+	width: 100%;
+	display: inline-block;
+}
+
+#leftProfilePageBlock {
+	width: 50%;
+	float: left;
+}
+
+#rightProfilePageBlock {
+	width: 50%;
+	float: left;
+}
+
+.leftSearchBar {
+	float: left;
+	margin-left: 20px;
+	width: 90% !important;
+}
+
+.otherUserBookCell {
+	width: 100%;
+	display: inline-block;
+}
+
+.otherUserBookFirstRow {
+	width: 100%;
+	display: inline-block;
+}
+
+.otherUserBookTitolo {
+	width: 80%;
+	line-height: 30px;
+	vertical-align: middle;
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: left;
+}
+
+
+.otherUserBookVoto {
+	width: 10%;
+	line-height: 30px;
+	vertical-align: middle;
+	float: left;
+	text-align: center;
+}
+
+.otherUserBookCondizione {
+	width: 10%;
+	line-height: 30px;
+	vertical-align: middle;
+	float: left;
+	text-align: center;
+}
+
+.otherUserBookSecondRow {
+	width: 100%;
+}
+
+.otherUserBookDescrizione_Label {
+	float: left;
+	width: 20%;
+}
+
+.otherUserBookDescrizione {
+	float: left;
+	width: 75%;
+	text-align: left;
+}
+
+.block {
+	display: inline-block;
+	width: 100%;
+}
+
+/*********** USER SEARCH ****************/
+
+.userSearchCell {
+	text-align:left;
+	width: 25%;
+}
+
+/*********** OTHER USER PAGE *****************/
+
+.titleStrong {
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+.titleStrongLink {
+	text-decoration: none;
+}
+
+.descriptionStrong {
+	font-weight: bold;
+	font-size: 10pt;
+}
+
+.rowSeparator {
+	width: 100%;
+	height: 1px;
+	background-color: darkgray;
+	float: left;
+	margin: 3px;
 }

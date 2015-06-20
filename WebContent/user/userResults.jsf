@@ -16,21 +16,25 @@
 
 		<ui:define name="content">
 			<h:outputText value="#{userSearch.status}"/>
-			<h:form>
-				<table style="width: 100%" cellpadding="5px">
-					<ui:repeat var="O" value="#{userSearch.results}">
-						<tr>
-							<td class="bookUserTableCell"><strong> <h:commandLink
-										action="#{bookDetails.goToProfile(O.username)}">
-													#{O.username}
-												</h:commandLink>
-							</strong></td>
-							<td class="bookUserTableCell">#{O.nome}</td>
-							<td class="bookUserTableCell">#{O.cognome}</td>
-						</tr>
-					</ui:repeat>
-				</table>
-			</h:form>
+			<div class="contentBlock">
+					<h:form>
+						<table style="width: 100%" cellpadding="5px">
+							<ui:repeat var="O" value="#{userSearch.results}">
+								<tr>
+									<td class="userSearchCell">
+										<strong>
+											<h:commandLink action="#{bookDetails.goToProfile(O.username)}">
+												#{O.username}
+											</h:commandLink>
+										</strong>
+									</td>
+									<td class="userSearchCell">#{O.nome}</td>
+									<td class="userSearchCell">#{O.cognome}</td>
+								</tr>
+							</ui:repeat>
+						</table>
+					</h:form>
+				</div>
 		</ui:define>
 	</ui:composition>
 </body>
