@@ -23,7 +23,7 @@ public class OwnBooksStrategy extends DataBeanGetStrategy {
 	private String user;
 	
 	public OwnBooksStrategy(Query select) {
-		super(select);
+		this.code=select;
 		this.setDefaults();
 		//l'utente deve settare username
 	}

@@ -19,13 +19,19 @@ import pigiadibooks.dbhandler.SQLCodeBuilder;
 import pigiadibooks.model.BookModel;
 import pigiadibooks.model.DataModel;
 
+
+/**
+ * 
+ * Classe che costruisce una lista di Bookbean dal DB
+ *
+ */
 public class BookBeanStrategy extends DataBeanGetStrategy {
 	private String ref_titolo,ref_industryid, ref_autore,ref_desc,ref_url;
 	private String ref_categoria;
 	
 	public BookBeanStrategy(Query selectLibri, String ref_titolo, String ref_industryid
 			,String ref_autore, String ref_desc, String ref_url,String ref_categoria){
-		super(selectLibri);
+		this.code=selectLibri;
 		this.ref_titolo = ref_titolo;
 		this.ref_industryid = ref_industryid;
 		this.ref_autore = ref_autore;
@@ -38,6 +44,10 @@ public class BookBeanStrategy extends DataBeanGetStrategy {
 		this(selectLibri,"titolo","industryid","nome","descrizione","imgurl","categoria");
 	}
 
+	
+	/**
+	 * Di default la query specificata è tutti i libri con i loro autori
+	 */
 	public BookBeanStrategy() {
 		this((Query)SQLCodeBuilder
 				.createSelectAllFrom("ScrittoDa AS SD JOIN Libro L ON SD.libro_industryid=L.industryid "

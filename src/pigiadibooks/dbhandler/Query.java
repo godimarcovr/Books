@@ -7,6 +7,12 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 
+ * Rappresenta una query (una Select)
+ *
+ */
+
 public class Query extends SQLCode{
 	private List<Object> parameters;
 	
@@ -15,10 +21,18 @@ public class Query extends SQLCode{
 		this.parameters=new LinkedList<Object>();
 	}
 	
+	/**
+	 * Aggiunge un parametro che verrà settato sul PreparedStatement
+	 * @param toAdd Parametro da aggiungere
+	 */
 	public void addParam(Object toAdd){
 		this.parameters.add(toAdd);
 	}
 
+	/**
+	 * Costruisce il PreparedStatement e setta tutti i parametri specificati
+	 * 
+	 */
 	@Override
 	public PreparedStatement prepareStatement(Connection c) throws SQLException{
 		PreparedStatement toRet=c.prepareStatement(this.code);
@@ -28,7 +42,6 @@ public class Query extends SQLCode{
 		return toRet;
 	}
 	
-	//non chiude lo statement!!
 	@Override
 	public ResultSet executeQueryOnConnection(Connection c) throws SQLException{
 		PreparedStatement ps=this.prepareStatement(c);
