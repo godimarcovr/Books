@@ -53,7 +53,7 @@
 					<h:form>
 						<table>
 							<tr>
-								<td>
+								<td class="welcomeText">
 									<h:outputText value="#{msgs.welcome}" />
 									<h:outputText value="#{auth.username}" />
 								</td>

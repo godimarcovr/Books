@@ -518,6 +518,12 @@ ul.style4 .first {
 	text-align: center;
 }
 
+.welcomeText {
+	vertical-align: bottom; 
+	padding: 7px;
+	
+}
+
 /* line 353, C:/Users/Francesco/workspace/ImmobiliareGit/WebContent/resources/css/style.sass */
 .redButton {
 	text-align: center;

@@ -1,7 +1,7 @@
 package pigiadibooks.dbhandler;
 
+import java.io.Serializable;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,8 +9,12 @@ import java.util.List;
 
 import pigiadibooks.model.DataModel;
 
-public abstract class DataBeanGetStrategy {
+public abstract class DataBeanGetStrategy implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Query code;
 	
 	public DataBeanGetStrategy(Query select){
