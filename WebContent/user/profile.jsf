@@ -51,6 +51,11 @@
 						<h:outputText value="Modifica" />
 					</div>
 				</h:commandLink>
+				<h:commandLink action="#{personal.resetFields()}">
+					<div id="bigSearchButton" class="redButton">
+						<h:outputText value="Reset" />
+					</div>
+				</h:commandLink>
 			</h:form>
 			<h:form>
 				<h:dataTable var="B" value="#{personal.myBooks}">

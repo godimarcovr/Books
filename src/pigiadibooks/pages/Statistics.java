@@ -43,14 +43,12 @@ public class Statistics implements Serializable{
 	public List<BookSearchModel> getTop10Search(){
 		try {
 			List<BookSearchModel> toRet=this.rl.getTop10Searches();
-			System.out.println(toRet);
 			return toRet;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			List<BookSearchModel> toRet=new ArrayList<BookSearchModel>();
 			toRet.add(new BookSearchModel());
-			System.out.println("NOOUUU");
 			return toRet;
 		}
 	}

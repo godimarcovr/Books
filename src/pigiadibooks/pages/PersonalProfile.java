@@ -99,7 +99,8 @@ public class PersonalProfile implements Serializable {
 				this.myUser.getPassword()==null || this.myUser.getPassword().equals("") ||
 				this.myUser.getEmail()==null || this.myUser.getEmail().equals("")){
 			this.statusMessage="Cambio dati personali fallito!";
-			return "";
+			this.resetFields();
+			return "/user/profile.jsf?faces-redirect=true";
 		}
 		else{
 			FakePosPrivateUserEdit refg=new FakePosPrivateUserEdit(this.username);
@@ -157,6 +158,9 @@ public class PersonalProfile implements Serializable {
 		this.other = other;
 	}
 	
-	
+	public String resetFields(){
+		this.setUsername();
+		return "/user/profile.jsf?faces-redirect=true";
+	}
 
 }
