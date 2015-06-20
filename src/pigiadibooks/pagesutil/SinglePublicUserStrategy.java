@@ -17,7 +17,7 @@ public class SinglePublicUserStrategy extends DataBeanGetStrategy {
 	private String ref_nome;
 
 	public SinglePublicUserStrategy(String username) {
-		super((Query) SQLCodeBuilder.createSelectAllFromWhere("Users U", "U.username=?"));
+		this.code=(Query) SQLCodeBuilder.createSelectAllFromWhere("Users U", "U.username=?");
 		this.code.addParam(username);
 		this.setDefaults();
 	}

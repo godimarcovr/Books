@@ -1,5 +1,13 @@
 package pigiadibooks.dbhandler;
 
+
+/**
+ * Classe Builder che costruisce le varie SQLCode occupandosi dei dettagli
+ * I metodi sono autoesplicativi
+ * 
+ * @author Marco
+ *
+ */
 public class SQLCodeBuilder {
 	//creare metodi man mano che servono
 	//statici?

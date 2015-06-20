@@ -7,20 +7,41 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * 
+ * Rappresenta un codice DML (insert delete update)
+ *
+ */
 public class DMLCode extends SQLCode {
 
 	private Object[][] parametersByLine;
 	private boolean ignoreWarnings = false;
 
+	/**
+	 * 
+	 * @param code Stringa del codice
+	 * @param lines quante volte deve essere chiamata la query
+	 * @param values quanti valori da settare per chiamata
+	 */
 	public DMLCode(String code, int lines, int values) {
 		super(code);
 		parametersByLine = new Object[lines][values];
 	}
 
+	/**
+	 * Setta parametro a riga e colonna specificate
+	 * @param riga
+	 * @param colonna
+	 * @param value
+	 */
 	public void setParam(int riga, int colonna, Object value) {
 		this.parametersByLine[riga][colonna] = value;
 	}
 
+	/**
+	 * PERICOLOSO! Ignora le warning dovute ai vincoli di DB.
+	 * @param b
+	 */
 	public void setIgnoreWarnings(boolean b) {
 		this.ignoreWarnings = b;
 	}
@@ -40,7 +61,10 @@ public class DMLCode extends SQLCode {
 	}
 
 	
-	//DA USARE SOLO SE CI SI ASPETTANO ERRORI DI VINCOLI
+	/**
+	 * Esegue la query ignorando le eccezioni dovute ai vincoli di tabella
+	 * @param c
+	 */
 	private void executeSkipWarnings(Connection c) {
 		// migliora performance per batch
 		try {

@@ -77,9 +77,10 @@ public class NearbyFakePublicUserModelStrategy extends DataBeanGetStrategy {
 		
 		this.code=(Query) SQLCodeBuilder.createSelectAllFromWhereOrderByWithParams("Users U JOIN PosGeograficaFake PGF ON "
 					+ "U."+this.ref_username+"=PGF."+this.ref_posuser
-					, "U."+this.ref_username+" ILIKE ? AND "+pitagora+" <?"
+					, "U."+this.ref_username+" ILIKE ? AND "+pitagora+" <? AND "
+							+ "U."+this.ref_username+"!=?"
 					, " sqrt(pow(PGF."+this.ref_x+"-?,2)+pow(PGF."+this.ref_y+"-?,2))"
-					, new Object[]{"%"+toSearch+"%",this.posX,this.posY,maxRange
+					, new Object[]{"%"+toSearch+"%",this.posX,this.posY,maxRange,username
 										,this.posX,this.posY});
 	}
 	
