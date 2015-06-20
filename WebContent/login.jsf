@@ -16,9 +16,28 @@
 
 		<ui:define name="content">
 			<form id="loginForm" method="post" action="j_security_check">
-				<input name="j_username" type="text" placeholder="Username" /> <input
-					name="j_password" type="password" placeholder="Password" /> <input
-					value="Login" type="submit" />
+				<div class="wrappingContentBlock">
+					<table>
+						<tr>
+							<td>Username</td>
+							<td>
+								<input name="j_username" class="mainPageSearch" type="text" placeholder="Username" />
+							</td>
+						</tr>
+						<tr>
+							<td>Password</td>
+							<td>
+								<input name="j_password" class="mainPageSearch" type="password" placeholder="Password" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"><input class="redButton mediumButton" value="Login" type="submit" /></td>
+						</tr>
+					</table>
+					 
+					 
+					
+				</div>
 			</form>
 		</ui:define>
 	</ui:composition>

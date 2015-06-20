@@ -16,57 +16,86 @@
 
 		<ui:define name="content">
 			<h:form>
-				<h:outputText class="mainPageSearch"
-					value="#{personal.statusMessage}" />
-				<br />
-				<table>
-					<tr>
-						<td><h:outputText class="mainPageSearch"
-								value="#{personal.myUser.username}" /></td>
-					</tr>
-					<tr>
-						<td><h:inputText class="mainPageSearch"
-								value="#{personal.myUser.email}" /></td>
-					</tr>
-					<tr>
-						<td><h:outputText class="mainPageSearch"
-								value="#{personal.myUser.nome}" /></td>
-					</tr>
-					<tr>
-						<td><h:outputText class="mainPageSearch"
-								value="#{personal.myUser.cognome}" /></td>
-					</tr>
-					<tr>
-						<td><h:inputText class="mainPageSearch"
-								value="#{personal.myUser.xPos}" /></td>
-					</tr>
-					<tr>
-						<td><h:inputText class="mainPageSearch"
-								value="#{personal.myUser.yPos}" /></td>
-					</tr>
-
-				</table>
-				<h:commandLink action="#{personal.edit()}">
-					<div id="bigSearchButton" class="redButton">
-						<h:outputText value="Modifica" />
-					</div>
-				</h:commandLink>
-				<h:commandLink action="#{personal.resetFields()}">
-					<div id="bigSearchButton" class="redButton">
+				<h:outputText value="#{personal.statusMessage}" />
+				<div class="clear" />
+				<div class="wrappingContentBlock">
+					<table >
+						<tr>
+							<td class="inputTableLabelColumn columnCellHeight">
+								<h:outputText value="#{msgs.username_profile_label}" />
+							</td>
+							<td class="columnDetailCell">
+								<strong><h:outputText value="#{personal.myUser.username}" /></strong>
+							</td>
+						</tr>
+						<tr>
+							<td class="inputTableLabelColumn columnCellHeight">
+								<h:outputText value="#{msgs.email_profile_label}" />
+							</td>
+							<td>
+								<h:inputText class="mainPageSearch" value="#{personal.myUser.email}" />
+							</td>
+						</tr>
+						<tr>
+							<td class="inputTableLabelColumn columnCellHeight">
+								<h:outputText value="#{msgs.nome_profile_label}" />
+							</td>
+							<td class="columnDetailCell">
+								<strong><h:outputText value="#{personal.myUser.nome}" /></strong>
+							</td>
+						</tr>
+						<tr>
+							<td class="inputTableLabelColumn columnCellHeight">
+								<h:outputText value="#{msgs.cognome_profile_label}" />
+							</td>
+							<td class="columnDetailCell">
+								<strong><h:outputText value="#{personal.myUser.cognome}" /></strong>
+							</td>
+						</tr>
+						<tr>
+							<td class="inputTableLabelColumn columnCellHeight">
+								<h:outputText value="#{msgs.latitude_profile_label}" />
+							</td>
+							<td>
+								<h:inputText class="mainPageSearch" value="#{personal.myUser.xPos}" />
+							</td>
+						</tr>
+						<tr>
+							<td class="inputTableLabelColumn columnCellHeight">
+								<h:outputText value="#{msgs.longitude_profile_label}" />
+							</td>
+							<td><h:inputText class="mainPageSearch" value="#{personal.myUser.yPos}" /></td>
+						</tr>
+	
+					</table>
+					<h:commandLink action="#{personal.edit()}">
+						<div class="mediumButton redButton">
+							<h:outputText value="Modifica" />
+						</div>
+					</h:commandLink>
+					<div class="clear" />
+					<h:commandLink class="resetLink" action="#{personal.resetFields()}">
 						<h:outputText value="Reset" />
-					</div>
-				</h:commandLink>
+					</h:commandLink>
+				</div>
 			</h:form>
 			<h:form>
-				<h:dataTable var="B" value="#{personal.myBooks}">
-					<h:column>
-						<h:commandLink action="#{personal.goToDetail(B)}">
-							<div>
-								<h:outputText value="#{B.titolo}" />
-							</div>
-						</h:commandLink>
-					</h:column>
-				</h:dataTable>
+				<div class="contentBlock">
+					<div id="ownedBooks">
+						<div id="ownedBooksLabel">
+							<strong><h:outputText value="#{msgs.ownedBooksLabel}" /></strong>
+						</div>
+						<div id="ownedBooksList">
+							<ui:repeat var="B" value="#{personal.myBooks}">
+								<h:commandLink action="#{personal.goToDetail(B)}">
+									<span class="ownedBookTitle">
+										<strong><h:outputText value="#{B.titolo}" /></strong>
+									</span>
+								</h:commandLink>
+							</ui:repeat>
+						</div>
+					</div>
+				</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>

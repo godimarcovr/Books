@@ -213,7 +213,7 @@ ul.contact li a.icon-rss::before {
 
 /* line 145, C:/Users/Francesco/workspace/ImmobiliareGit/WebContent/resources/css/style.sass */
 #wrapper {
-	background: #eaeaea none repeat scroll 0 0;
+	background: #fff none repeat scroll 0 0;
 }
 
 /* line 148, C:/Users/Francesco/workspace/ImmobiliareGit/WebContent/resources/css/style.sass */
@@ -736,6 +736,15 @@ ul.style4 .first {
   	padding: 15px;
 }
 
+.wrappingContentBlock {
+	display: inline-block;
+	border: thin solid darkgray;
+	border-radius: 4px;
+  	margin: auto;
+  	margin-top: 20px;
+  	padding: 15px;	
+}
+
 .IT {
 	height: 30px;
 	width: 75%;
@@ -764,4 +773,56 @@ ul.style4 .first {
     height: 1px;
     padding: 0px;
     width: 100%;
+}
+
+/********************* ERROR PAGE *************************/
+
+.errorText {
+	color: red;
+}
+
+/******************** PROFILE PAGE ***********************/
+
+.columnCellHeight {
+	line-height: 30px;
+	vertical-align: middle;
+}
+
+.columnDetailCell {
+	text-align: left;
+	padding-left: 22px;
+}
+
+.resetLink {
+	text-decoration: none;
+	font-size: 10pt;
+}
+
+#ownedBooks {
+	width: 100%;
+	display: inline-block;
+}
+
+#ownedBooksLabel {
+	width: 25%;
+	float: left;
+	line-height: 30px;
+	vertical-align: middle;
+}
+
+#ownedBooksList {
+	width: 75%;
+	float: left;
+	display: inline-block;
+}
+
+.ownedBookTitle {
+	width: 100%;
+	line-height: 30px;
+	vertical-align: middle;
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: left;
 }

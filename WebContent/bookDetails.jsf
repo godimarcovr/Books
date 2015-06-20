@@ -107,9 +107,6 @@
 							<table style="width: 100%" cellpadding="5px">
 								<ui:repeat var="O" value="#{bookDetails.nearbyOwners}">
 									<tr>
-											<div>
-												<h:outputText value="#{B.titolo}" />
-											</div>
 										<td class="bookUserTableCell">
 											<strong>
 												<h:commandLink action="#{bookDetails.goToProfile(O.username)}">
