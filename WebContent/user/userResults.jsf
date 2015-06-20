@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+<title>IGNORED</title>
+</head>
+<body>
+	<ui:composition template="/templates/layout.jsf">
+		<ui:define name="windowTitle">
+    		#{msgs.base_title} - #{msgs.index_title}
+  		</ui:define>
+
+		<ui:define name="content">
+			<h:outputText value="#{userSearch.status}"/>
+			<h:form>
+				<table style="width: 100%" cellpadding="5px">
+					<ui:repeat var="O" value="#{userSearch.results}">
+						<tr>
+							<td class="bookUserTableCell"><strong> <h:commandLink
+										action="#{bookDetails.goToProfile(O.username)}">
+													#{O.username}
+												</h:commandLink>
+							</strong></td>
+							<td class="bookUserTableCell">#{O.nome}</td>
+							<td class="bookUserTableCell">#{O.cognome}</td>
+						</tr>
+					</ui:repeat>
+				</table>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -31,12 +31,21 @@ public class PersonalProfile implements Serializable {
 	@ManagedProperty(value="#{other}")
     private OtherBean other;
 	
+	@ManagedProperty(value="#{userSearch}")
+	private UserSearch userSearch;
+	
+	
 	private FakePosPrivateUserModel myUser;
 	private String username;
 	
 	private String statusMessage;
 	
 	private OwnedBooks myBooks;
+	
+	private String userKey;
+
+
+	private float range;
 	
 	// **************INIT****************
 	public PersonalProfile() {	}
@@ -45,6 +54,9 @@ public class PersonalProfile implements Serializable {
 	public void initialize() {
 		this.setUsername();
 		this.statusMessage="";
+		
+		this.userKey="";
+		this.range=100.0f;
 	}
 	// ************************************
 
@@ -163,4 +175,33 @@ public class PersonalProfile implements Serializable {
 		return "/user/profile.jsf?faces-redirect=true";
 	}
 
+	public UserSearch getUserSearch() {
+		return userSearch;
+	}
+
+	public void setUserSearch(UserSearch userSearch) {
+		this.userSearch = userSearch;
+	}
+	
+	public String getUserKey() {
+		return userKey;
+	}
+
+	public void setUserKey(String userKey) {
+		this.userKey = userKey;
+	}
+	
+	public float getRange() {
+		return range;
+	}
+
+	public void setRange(float range) {
+		this.range = range;
+	}
+
+	public String searchUser(){
+		this.userSearch.setSearchKey(this.username, this.userKey, this.range);
+		return "/user/userResults.jsf?faces-redirect=true";
+	}
+	
 }

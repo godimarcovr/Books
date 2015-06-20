@@ -16,6 +16,15 @@
 
 		<ui:define name="content">
 			<h:form>
+				<h:inputText class="mainPageSearch" value="#{personal.userKey}" />
+				<h:inputText class="mainPageSearch" value="#{personal.range}" />
+				<h:commandLink action="#{personal.searchUser()}">
+					<div class="bigButton redButton">
+						<h:outputText value="#{msgs.searchButton_label}" />
+					</div>
+				</h:commandLink>
+			</h:form>
+			<h:form>
 				<h:outputText class="mainPageSearch"
 					value="#{personal.statusMessage}" />
 				<br />

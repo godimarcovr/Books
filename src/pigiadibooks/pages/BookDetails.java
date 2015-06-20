@@ -54,6 +54,10 @@ public class BookDetails implements Serializable{
 
 	public void setSelectedBook(BookModel selectedBook) {
 		this.selectedBook = selectedBook;
+		if(this.selectedBook.getImgurl()== null || this.selectedBook.getImgurl().isEmpty()){
+			this.selectedBook.setImgurl("http://www.kitabyzer.com/img/default_cover.jpg");
+		}
+		
 		this.isOwned=null;
 		this.lastBorrowRequested=null;
 		
