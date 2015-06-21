@@ -1,5 +1,6 @@
 package pigiadibooks.pagesutil;
 import java.io.IOException;
+import java.io.Serializable;
 import java.security.GeneralSecurityException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ import pigiadibooks.model.BookModel;
 import pigiadibooks.model.DataModel;
 
 //TODO ottimizzare parallelizzando inserimenti finali o inserendo alcune chiamate nel costruttore
-public class BookLookup {
+public class BookLookup implements Serializable{
 	
 	private BookBeanStrategy strat;
 	private String title;
