@@ -22,6 +22,15 @@ import pigiadibooks.model.BookModel;
 import pigiadibooks.model.DataModel;
 
 //TODO ottimizzare parallelizzando inserimenti finali o inserendo alcune chiamate nel costruttore
+
+/**
+ * Classe che interroga il DB e una sorgente esterna per ritornare risultati di ricerca in base al titolo
+ * Si occupa di aggiungere al database i libri che non sono già presenti
+ * 
+ * @author Marco
+ *
+ */
+
 public class BookLookup implements Serializable{
 	
 	private BookBeanStrategy strat;
@@ -45,6 +54,18 @@ public class BookLookup implements Serializable{
 
 	//TODO gestire il controllo in parallelo anche su Google Books oltre che sul db
 	//magari metterlo nel costruttore che fa una thread che va a cercare.
+	
+	/**
+	 * Torna i risultati della ricerca dati dall'unione dei risultati dal DB e di quelli dalla sorgente
+	 * esterna. I risultati mancanti dal DB vengono aggiunti.
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 * @throws GeneralSecurityException
+	 * @throws IOException
+	 */
 	public List<BookModel>  lookupByTitle() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, GeneralSecurityException, IOException{
 		Set<BookModel> toRet=new LinkedHashSet<BookModel>();
 		List<DataModel> resFromDB=this.strat.getSelectedBeans(MyDriver.getInstance().getConnection());
@@ -63,6 +84,13 @@ public class BookLookup implements Serializable{
 		return new ArrayList<BookModel>(toRet);
 	}
 	
+	
+	/**
+	 * Inserisci i libri dalla sorgente esterna. Usa l'opzione NO WARNINGS
+	 * @param toIns
+	 * @param c
+	 * @throws SQLException
+	 */
 	private void insertBooks(List<BookModel> toIns,Connection c) throws SQLException{
 		if(toIns.size()>0){
 			Object[][] params=new Object[toIns.size()][5];

@@ -17,6 +17,14 @@ import com.google.api.services.books.model.Volume.VolumeInfo.ImageLinks;
 import com.google.api.services.books.model.Volume.VolumeInfo.IndustryIdentifiers;
 import com.google.api.services.books.model.Volumes;
 
+
+/**
+ * 
+ * Implementazione specifica per Google Books
+ * 
+ * @author Marco
+ *
+ */
 public class GoogleBooksIndex extends ExternalBookIndex {
 
 	private static String apikey = null;
@@ -107,6 +115,12 @@ public class GoogleBooksIndex extends ExternalBookIndex {
 		return toRet;
 	}
 
+	/**
+	 * Ritorna l'imgurl più grande presente per il libro indicato
+	 * @param il Array di link immagini
+	 * @return
+	 */
+	
 	private String getBiggestImageURL(ImageLinks il) {
 		if (il.getLarge() != null)
 			return il.getLarge();
