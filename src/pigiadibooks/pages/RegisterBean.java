@@ -116,10 +116,10 @@ public class RegisterBean implements Serializable{
 			FakePosPrivateUserEdit refg=new FakePosPrivateUserEdit(this.username);
 			try {
 				refg.insertUser(fpum);
-				this.regFailed=false;
+				this.initialize();
 				return "/index.jsf?faces-redirect=true";
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				this.regFailed=true;
 				return "";
 			}

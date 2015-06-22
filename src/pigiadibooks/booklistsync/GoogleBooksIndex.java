@@ -56,7 +56,7 @@ public class GoogleBooksIndex extends ExternalBookIndex {
 
 		com.google.api.services.books.Books.Volumes.List volumesList = books
 				.volumes().list("intitle:" + title);
-		volumesList.set("langRestrict", "en");
+		//volumesList.set("langRestrict", "en");
 		Volumes volumes = volumesList.execute();
 		if (volumes.getTotalItems() == 0 || volumes.getItems() == null) {
 			return new ArrayList<BookModel>();
