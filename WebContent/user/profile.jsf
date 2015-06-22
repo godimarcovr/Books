@@ -105,6 +105,8 @@
 									</td>
 									<td>
 										<h:inputText class="mainPageSearch leftSearchBar" value="#{personal.range}"  />
+										<h:commandButton action="#{personal.searchUser()}" 
+														style="display:none;" value="submit"/>
 									</td>
 								</tr>
 								<tr>

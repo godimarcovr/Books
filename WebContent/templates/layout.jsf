@@ -103,7 +103,8 @@
 				<h:form>
 					<div id="centerBanner">
 						<h:inputText class="headerSearch mainPageSearch" value="#{mainView.searchResults.title}" />
-						
+						<h:commandButton action="#{mainView.search()}" 
+								style="display:none;" value="submit"/>
 						<h:commandLink action="#{mainView.search()}">
 							<div id="searchBarButton" class="mediumButton redButton">
 								<h:outputText value="#{msgs.searchButton_label}" />
