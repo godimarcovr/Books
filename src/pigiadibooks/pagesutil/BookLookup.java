@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Observable;
 import java.util.Set;
 
 import pigiadibooks.booklistsync.BookBeanStrategy;
@@ -31,7 +32,7 @@ import pigiadibooks.model.DataModel;
  *
  */
 
-public class BookLookup implements Serializable{
+public class BookLookup extends Observable implements Serializable{
 	
 	private BookBeanStrategy strat;
 	private String title;
@@ -43,9 +44,12 @@ public class BookLookup implements Serializable{
 						, "L.titolo ILIKE ?"
 						,new Object[]{"%"+title+"%"}));
 		this.title=title;
+		this.addObserver(new ResearchLoggerStat());
 	}
 	
 	public BookLookup(){
+		this.title=title;
+		this.addObserver(new ResearchLoggerStat());
 	}
 	
 	public String getTitle() {
@@ -78,8 +82,9 @@ public class BookLookup implements Serializable{
 		toRet.addAll(fromGoogleBooks);
 		
 		//per statistiche ricerche libri
-		ResearchLoggerStat rl=new ResearchLoggerStat();
-		rl.insertSearch(this.title);
+		//chiamo observer
+		this.setChanged();
+		this.notifyObservers(this.title);
 		
 		return new ArrayList<BookModel>(toRet);
 	}

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 
 import javax.faces.context.FacesContext;
 import javax.security.auth.Subject;
@@ -23,7 +24,7 @@ import pigiadibooks.dbhandler.Query;
 import pigiadibooks.dbhandler.SQLCodeBuilder;
 import pigiadibooks.pagesutil.LoginLoggerStat;
 
-public class MyLoginModule implements LoginModule {
+public class MyLoginModule extends Observable implements LoginModule {
 
 	private CallbackHandler callbackHandler;
 	private Subject subject;
@@ -45,6 +46,8 @@ public class MyLoginModule implements LoginModule {
 		this.callbackHandler = callbackHandler;
 
 		debug = "true".equalsIgnoreCase((String) options.get("debug"));
+		//aggiungo Observer
+		this.addObserver(new LoginLoggerStat());
 	}
 
 	@Override
@@ -76,13 +79,15 @@ public class MyLoginModule implements LoginModule {
 			if (isValidUser()){
 				loginSucceeded = true;
 				//Loggo il login
-				LoginLoggerStat ll=new LoginLoggerStat();
+				/*LoginLoggerStat ll=new LoginLoggerStat();
 				try {
 					ll.insertLoginWithRandomProvincia(this.username);
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println("ERRORE NON HO AGGIUNTO IL LOGIN AL LOG DEI LOGIN");
-				}
+				}*/
+				this.setChanged();
+				this.notifyObservers(this.username);
 				//****
 				return true;
 			}

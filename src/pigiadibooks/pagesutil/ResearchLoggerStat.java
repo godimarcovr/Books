@@ -3,6 +3,8 @@ package pigiadibooks.pagesutil;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import pigiadibooks.dbhandler.DMLCode;
 import pigiadibooks.dbhandler.DataBeanGetStrategy;
@@ -13,7 +15,7 @@ import pigiadibooks.dbhandler.SQLCodeBuilder;
 import pigiadibooks.model.BookSearchModel;
 import pigiadibooks.model.DataModel;
 
-public class ResearchLoggerStat {
+public class ResearchLoggerStat implements Observer{
 	
 	private SQLCode insertSearch, statTopSearches;
 	private String ref_searches;
@@ -45,6 +47,18 @@ public class ResearchLoggerStat {
 			toRet.add((BookSearchModel)dm);
 		}
 		return toRet;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		try {
+			this.insertSearch((String)arg);
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 }
