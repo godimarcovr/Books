@@ -13,6 +13,7 @@ public class AdminCreationMain {
 		frame.setVisible(true);
 		frame.setSize(400, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("Inserimento utenti");
 	}
 
 }
